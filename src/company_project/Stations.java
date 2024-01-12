@@ -12,12 +12,14 @@ package company_project;
 
 //المحطات
 public class Stations {
+    Integer id=0;
      String station_name;
      String station_owner_name;
      String phone_number;
      Double money;
 
-    public Stations(String station_name, String station_owner_name, String phone_number, Double money) {
+    public Stations(Integer id,String station_name, String station_owner_name, String phone_number, Double money) {
+        this.id=id;
         this.station_name = station_name;
         this.station_owner_name = station_owner_name;
         this.phone_number = phone_number;
@@ -26,6 +28,14 @@ public class Stations {
 
     public String getStation_name() {
         return station_name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setStation_name(String station_name) {
