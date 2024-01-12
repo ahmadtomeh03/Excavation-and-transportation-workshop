@@ -2,8 +2,8 @@ package company_project;
 public class Paid {
     // الدفع
 
- Integer cash=0;
- Integer id=0;
+ private Integer cash=0;
+ private Integer id=0;
 
     public Integer getId() {
         return id;

@@ -1,8 +1,8 @@
 package company_project;
 public class ExtraWork {
-    Integer id;
-    Integer price_of_hour;
-    String note;
+    private Integer id;
+    private Integer price_of_hour;
+    private String note;
     public ExtraWork() {
     }
 

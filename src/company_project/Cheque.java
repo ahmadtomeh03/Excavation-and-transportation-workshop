@@ -2,10 +2,10 @@
 package company_project;
 public class Cheque {
 
-    Integer number_of_cheque;// رقم الشك  
-    String date; // تاريخ التسليم 
-    String data_spending_the_money;//تاريخ الصرف 
-    Integer value=0;// قيمة الشك
+    private Integer number_of_cheque;// رقم الشك  
+    private String date; // تاريخ التسليم 
+    private String data_spending_the_money;//تاريخ الصرف 
+    private Integer value=0;// قيمة الشك
    // يوجد صورة 
 
     public void setNumber_of_cheque(Integer number_of_cheque) {
