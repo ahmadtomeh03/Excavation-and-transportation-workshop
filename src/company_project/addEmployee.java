@@ -157,7 +157,7 @@ private  Connection con;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         connect();
-        Employee employee=new Employee();
+        Employees employee=new Employees();
         employee.setName(name.getText());
         employee.setNumberofcard(card.getText());
         employee.setNumberofphone(phone.getText());
