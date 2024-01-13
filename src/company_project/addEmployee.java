@@ -168,12 +168,12 @@ private  Connection con;
         String query = "INSERT INTO EMPLOYEES VALUES (?,?,?,?,?)";
         
         try (PreparedStatement ps = con.prepareStatement(query)) {
-    ps.setString(1, employee.getNumberofcard());
-    ps.setString(2,employee.getName());
-    ps.setInt(3,employee.getSalary());
-    ps.setString(4, employee.getNumberofphone());
-    LocalDate date = LocalDate.now();
-    ps.setString(5,date.toString());
+        ps.setString(1, employee.getNumberofcard());
+        ps.setString(2,employee.getName());
+        ps.setInt(3,employee.getSalary());
+        ps.setString(4, employee.getNumberofphone());
+        LocalDate date = LocalDate.now();
+        ps.setString(5,date.toString());
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("Rows affected: " + rowsAffected);

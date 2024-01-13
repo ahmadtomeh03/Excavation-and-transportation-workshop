@@ -1,16 +1,16 @@
 package company_project;
 // الاليات 
 public class Mechanism {
-    private Integer id=0;
+    private String id;
     private String name;// اسم الالة 
     private Integer price;// سعر الالية 
     private Integer price_of_hour;// سعر الساعة
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
