@@ -5,8 +5,11 @@
  */
 package company_project;
 
+import Comp.Expenses;
 import Comp.employee;
+import Comp.machine;
 import Comp.stations;
+import Comp.workshop;
 import javax.swing.border.Border;
 
 /**
@@ -17,13 +20,21 @@ public class DashBoard extends javax.swing.JFrame {
 
     employee e =new employee();
     stations s =new stations();
+    workshop w =new workshop();
+    machine m = new machine();
+    Expenses E = new Expenses();
     public DashBoard() {
         initComponents();
         jLayeredPane1.add(e);
+        jLayeredPane1.add(w);
         jLayeredPane1.add(s);
+        jLayeredPane1.add(m);
+        jLayeredPane1.add(E);
         e.setVisible(false);
         s.setVisible(false);
-        
+        m.setVisible(false);
+        w.setVisible(false);
+        E.setVisible(false);
     }
 
     /**
@@ -80,8 +91,18 @@ public class DashBoard extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("المحطات");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("الورشات");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -91,6 +112,11 @@ public class DashBoard extends javax.swing.JFrame {
         jButton3.setText("الاليات");
         jButton3.setBorderPainted(false);
         jButton3.setOpaque(false);
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jButton5.setText("تسجيل خروج");
         jButton5.setBorder(null);
@@ -100,6 +126,11 @@ public class DashBoard extends javax.swing.JFrame {
 
         jButton6.setText("النفقات");
         jButton6.setBorder(null);
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -206,13 +237,52 @@ public class DashBoard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+        e.setVisible(true);
+        s.setVisible(false);
+        m.setVisible(false);
+        w.setVisible(false);
+        E.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        s.setVisible(true);
+        e.setVisible(false);
+        m.setVisible(false);
+        w.setVisible(false);
+        E.setVisible(false);
+        
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        w.setVisible(true);
+        e.setVisible(false);
+        m.setVisible(false);
+        s.setVisible(false);
+        E.setVisible(false);
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        m.setVisible(true);
+        e.setVisible(false);
+        s.setVisible(false);
+        w.setVisible(false);
+        E.setVisible(false);
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        E.setVisible(true);
+        e.setVisible(false);
+        m.setVisible(false);
+        w.setVisible(false);
+        s.setVisible(false);
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    
+    
     /**
      * @param args the command line arguments
      */
