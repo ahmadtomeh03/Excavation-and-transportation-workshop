@@ -15,20 +15,30 @@ import java.awt.Color;
  */
 public class machineCostPayment extends javax.swing.JFrame {
 
-    /**
-     * Creates new form machineCostPayment
-     */
-    
-    cashForMachine c =new cashForMachine();
+    cashForMachine c = new cashForMachine();
     check ch = new check();
-    
+    private String x;
     public machineCostPayment() {
+        System.out.println("machineCostPayment");
         initComponents();
         jLayeredPane1.add(c);
         jLayeredPane1.add(ch);
         c.setVisible(false);
         ch.setVisible(false);
-        
+        c.setID(x);
+        ch.setID(x);
+    }
+
+    public machineCostPayment(String text) {
+        System.out.println("machineCostPayment2");
+        initComponents();
+        jLayeredPane1.add(c);
+        jLayeredPane1.add(ch);
+        c.setVisible(false);
+        ch.setVisible(false);
+        x=text;
+        c.setID(x);
+        ch.setID(x);
     }
 
     /**
@@ -239,24 +249,23 @@ public class machineCostPayment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        System.out.println("jButton2MouseClicked");
         c.setVisible(true);
         ch.setVisible(false);
         jButton2.setBackground(new Color(255,153,51));
         jPanel4.setBackground(new Color(255,153,51));
         jButton1.setBackground(Color.white);
         jPanel6.setBackground(Color.lightGray);
-
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         c.setVisible(false);
         ch.setVisible(true);
         jButton1.setBackground(new Color(255,153,51));
-
         jPanel6.setBackground(new Color(255,153,51));
         jButton2.setBackground(Color.white);
         jPanel4.setBackground(Color.LIGHT_GRAY);
