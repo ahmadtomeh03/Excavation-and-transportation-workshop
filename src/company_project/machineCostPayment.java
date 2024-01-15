@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package company_project;
-
+// جاهز
 import Comp.cashForMachine;
 import Comp.check;
 import java.awt.Color;
@@ -27,6 +27,7 @@ public class machineCostPayment extends javax.swing.JFrame {
         ch.setVisible(false);
         c.setID(x);
         ch.setID(x);
+        ch.setKind("Mechanism");
     }
 
     public machineCostPayment(String text) {
@@ -39,6 +40,7 @@ public class machineCostPayment extends javax.swing.JFrame {
         x=text;
         c.setID(x);
         ch.setID(x);
+        ch.setKind("Mechanism");
     }
 
     /**

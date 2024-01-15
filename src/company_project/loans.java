@@ -9,7 +9,7 @@ import Comp.check;
 import Comp.loanCash;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
-
+// جاهز 
 /**
  *
  * @author Lenovo
@@ -21,6 +21,7 @@ public class loans extends javax.swing.JFrame {
      */
       loanCash c = new loanCash();
       check ch= new check();
+      private String x;
     public loans() {
         initComponents();
        jTabbedPane2.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
@@ -28,8 +29,22 @@ public class loans extends javax.swing.JFrame {
        jLayeredPane1.add(ch);
        c.setVisible(false);
        ch.setVisible(false);
-       
-       
+       c.setID(x);
+       ch.setID(x);
+       ch.setKind("Advance_Payment");
+    }
+
+    public loans(String text) {
+        initComponents();
+       jTabbedPane2.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+       jLayeredPane1.add(c);
+       jLayeredPane1.add(ch);
+       c.setVisible(false);
+       ch.setVisible(false);
+       x=text;
+       c.setID(x);
+       ch.setID(x);
+       ch.setKind("Advance_Payment");
     }
 
     /**
@@ -94,6 +109,15 @@ public class loans extends javax.swing.JFrame {
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jPanel3AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -277,6 +301,10 @@ public class loans extends javax.swing.JFrame {
         jButton2.setBackground(Color.white);
         jPanel9.setBackground(Color.lightGray);
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jPanel3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel3AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel3AncestorAdded
 
     /**
      * @param args the command line arguments

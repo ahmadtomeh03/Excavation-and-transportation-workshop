@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package company_project;
-
+// جاهز
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

@@ -27,6 +27,8 @@ public class check extends javax.swing.JPanel {
      */
     private String f;
     private Connection con;
+    private String s;
+    private String id2;
     public check() {
         initComponents();
         System.out.println("check");
@@ -128,16 +130,31 @@ public class check extends javax.swing.JPanel {
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         System.out.println("f"+f);
+        System.out.println("s"+s);
         connect();
-String query1 = "SELECT ID from mechanism where id=?";
+        String query1;
+        if( s == "Mechanism" )
+        {
+        query1 = "SELECT ID from mechanism where id=?";
+        id2="ID_mechanism";
+        }
+        else if(s == "Advance_Payment" || s == "Additional_Acts" || s == "Employees")
+        {
+        query1 = "SELECT ID_Number from Employees where ID_Number=?";    
+        id2 = "ID_Number";
+        }
+        else
+        {
+            query1 = "SELECT ID from stations where ID=?";
+            id2="ID_Station";
+        }
+        
 try (PreparedStatement ps1 = con.prepareStatement(query1)) {
-    ps1.setString(1, f);
+    ps1.setString(1,f);
     ResultSet rs = ps1.executeQuery();
     if(rs.next()){
-        String check = rs.getString("ID");
-    
-  
-String query2="INSERT INTO cheque(Doubt_Number,Amount,Received_Date,Data_Spending_The_Money,kind,ID_mechanism) values(?,?,?,?,?,?) ";
+        
+String query2="INSERT INTO cheque(Doubt_Number,Amount,Received_Date,Data_Spending_The_Money,kind,"+id2+")"+ "values(?,?,?,?,?,?) ";
 
 
         try (PreparedStatement ps = con.prepareStatement(query2)) {
@@ -145,7 +162,7 @@ String query2="INSERT INTO cheque(Doubt_Number,Amount,Received_Date,Data_Spendin
         ps.setInt(2,Integer.parseInt(amount.getText()));
         ps.setString(3,date1.getText());
         ps.setString(4,date_spending.getText());
-        ps.setString(5,"Mechanism");
+        ps.setString(5,s);
         ps.setString(6,f);
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
@@ -178,6 +195,9 @@ String query2="INSERT INTO cheque(Doubt_Number,Amount,Received_Date,Data_Spendin
     // End of variables declaration//GEN-END:variables
 
     public void setID(String x) {
-f=x;
+     f=x;
+    }
+     public void setKind(String x) {
+     s=x;
     }
 }
