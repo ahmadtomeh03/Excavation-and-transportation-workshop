@@ -5,6 +5,18 @@
  */
 package Comp;
 
+import company_project.Employees;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.concurrent.locks.StampedLock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -14,10 +26,21 @@ public class employee extends javax.swing.JPanel {
     /**
      * Creates new form employee
      */
+    private Connection con;
     public employee() {
         initComponents();
     }
-
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,6 +148,15 @@ public class employee extends javax.swing.JPanel {
         ));
         jTable1.setShowHorizontalLines(false);
         jTable1.setShowVerticalLines(false);
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -322,6 +354,32 @@ public class employee extends javax.swing.JPanel {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+        connect();
+        String query="select * from employees";
+         try (PreparedStatement ps = con.prepareStatement(query)) {
+        ResultSet rs=ps.executeQuery();
+        //Employees employee=new Employees();
+        while(rs.next())
+        {
+         String ID= rs.getString("ID_Number");
+         String name = rs.getString("Name");
+         String salary = String.valueOf(rs.getInt("Salary"));
+         String phone = rs.getString("Phone");
+         String date = rs.getString("Date_Join");
+         String emp[]={salary,date,phone,ID,name};
+         DefaultTableModel tb = (DefaultTableModel)jTable1.getModel();
+         tb.addRow(emp);
+         
+        }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+        
+    }//GEN-LAST:event_jTable1AncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
