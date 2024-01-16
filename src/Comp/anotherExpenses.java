@@ -140,16 +140,16 @@ public class anotherExpenses extends javax.swing.JPanel {
 
     private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
         connect();
-        String query = "select * from anotherexpenses";
+        String query = "select Note,dates,amount from operating_expenses";
         try (PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String notes = rs.getString("notes");
-                String the_date = rs.getString("the_date");
+                String Note = rs.getString("Note");
+                String dates = rs.getString("dates");
                 String amount = String.valueOf(rs.getInt("amount"));
-                String anotherExp[] = {notes, the_date, amount};
+                String operating_exp[] = {Note, dates, amount};
                 DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
-                tb.addRow(anotherExp);
+                tb.addRow(operating_exp);
 
             }
 
