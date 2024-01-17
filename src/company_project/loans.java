@@ -9,6 +9,17 @@ import Comp.check;
 import Comp.loanCash;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 // جاهز 
 /**
  *
@@ -22,6 +33,7 @@ public class loans extends javax.swing.JFrame {
       loanCash c = new loanCash();
       check ch= new check();
       private String x;
+      private Connection con;
     public loans() {
         initComponents();
        jTabbedPane2.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
@@ -110,12 +122,12 @@ public class loans extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jPanel3AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -127,23 +139,32 @@ public class loans extends javax.swing.JFrame {
                 "التاريخ", "قيمة السلفة", "نوع الدفع"
             }
         ));
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(74, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(462, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         jPanel6.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -305,6 +326,69 @@ public class loans extends javax.swing.JFrame {
     private void jPanel3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel3AncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel3AncestorAdded
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+        connect();
+        String query ="SELECT salary,date_paid,kind from cash where ID_Number = ? and kind = ?";
+        try (PreparedStatement ps1 = con.prepareStatement(query)){
+             ps1.setString(1,x);
+             ps1.setString(2,"Advance_Payment");
+             ResultSet rs = ps1.executeQuery();
+        if(rs.next()){
+            while(rs.next())
+        {
+         String amount= rs.getString("salary");
+         String date = rs.getString("date_paid");
+         String type = "Cash";
+         
+         String emp[]={date,amount,type};
+         DefaultTableModel tb = (DefaultTableModel)jTable1.getModel();
+         tb.addRow(emp);
+         
+        }
+    }
+    else {
+        System.out.println("No data found for ID: " + x);
+    }   
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        query ="SELECT Amount,Received_Date,kind from cheque where ID_Number = ? and kind = ?";
+        try (PreparedStatement ps1 = con.prepareStatement(query)){
+             ps1.setString(1,x);
+             ps1.setString(2,"Advance_Payment");
+             ResultSet rs = ps1.executeQuery();
+        if(rs.next()){
+            while(rs.next())
+        {
+         String amount= rs.getString("amount");
+         String date = rs.getString("Received_Date");
+         String type = "Cheque";
+         
+         String emp[]={date,amount,type};
+         DefaultTableModel tb = (DefaultTableModel)jTable1.getModel();
+         tb.addRow(emp);
+         
+        }
+    }
+    else {
+        System.out.println("No data found for ID: " + x);
+    }   
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jTable1AncestorAdded
 
     /**
      * @param args the command line arguments
