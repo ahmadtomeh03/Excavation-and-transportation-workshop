@@ -358,28 +358,24 @@ public  Connection connect() {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
-        connect();
-        String query="select * from employees";
-         try (PreparedStatement ps = con.prepareStatement(query)) {
-        ResultSet rs=ps.executeQuery();
-        //Employees employee=new Employees();
-        while(rs.next())
-        {
-         String ID= rs.getString("ID_Number");
-         String name = rs.getString("Name");
-         String salary = String.valueOf(rs.getInt("Salary"));
-         String phone = rs.getString("Phone");
-         String date = rs.getString("Date_Join");
-         String emp[]={salary,date,phone,ID,name};
-         DefaultTableModel tb = (DefaultTableModel)jTable1.getModel();
-         tb.addRow(emp);
-         
+       connect();
+    String query = "select * from employees";
+    try (PreparedStatement ps = con.prepareStatement(query)) {
+        ResultSet rs = ps.executeQuery();
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        tb.setRowCount(0);
+        while (rs.next()) {
+            String ID = rs.getString("ID_Number");
+            String name = rs.getString("Name");
+            String salary = String.valueOf(rs.getInt("Salary"));
+            String phone = rs.getString("Phone");
+            String date = rs.getString("Date_Join");
+            String emp[] = { salary, date, phone, ID, name };
+            tb.addRow(emp);
         }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
         
     }//GEN-LAST:event_jTable1AncestorAdded
 

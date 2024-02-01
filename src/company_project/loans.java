@@ -340,6 +340,8 @@ public  Connection connect() {
     private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
         connect();
         String query ="SELECT salary,date_paid,kind from cash where ID_Number = ? and kind = ?";
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        tb.setRowCount(0);
         try (PreparedStatement ps1 = con.prepareStatement(query)){
              ps1.setString(1,x);
              ps1.setString(2,"Advance_Payment");
@@ -352,7 +354,7 @@ public  Connection connect() {
          String type = "Cash";
          
          String emp[]={date,amount,type};
-         DefaultTableModel tb = (DefaultTableModel)jTable1.getModel();
+        
          tb.addRow(emp);
          
         }
@@ -376,7 +378,7 @@ public  Connection connect() {
          String type = "Cheque";
          
          String emp[]={date,amount,type};
-         DefaultTableModel tb = (DefaultTableModel)jTable1.getModel();
+        
          tb.addRow(emp);
          
         }
