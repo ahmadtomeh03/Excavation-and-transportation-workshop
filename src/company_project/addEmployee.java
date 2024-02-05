@@ -1,6 +1,6 @@
 
 package company_project;
-
+// جاهز 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -157,7 +157,7 @@ private  Connection con;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         connect();
-        Emp employee=new Emp();
+        Employees employee=new Employees();
         employee.setName(name.getText());
         employee.setNumberofcard(card.getText());
         employee.setNumberofphone(phone.getText());
@@ -168,12 +168,12 @@ private  Connection con;
         String query = "INSERT INTO EMPLOYEES VALUES (?,?,?,?,?)";
         
         try (PreparedStatement ps = con.prepareStatement(query)) {
-    ps.setString(1, employee.getNumberofcard());
-    ps.setString(2,employee.getName());
-    ps.setInt(3,employee.getSalary());
-    ps.setString(4, employee.getNumberofphone());
-    LocalDate date = LocalDate.now();
-    ps.setString(5,date.toString());
+        ps.setString(1, employee.getNumberofcard());
+        ps.setString(2,employee.getName());
+        ps.setInt(3,employee.getSalary());
+        ps.setString(4, employee.getNumberofphone());
+        LocalDate date = LocalDate.now();
+        ps.setString(5,date.toString());
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("Rows affected: " + rowsAffected);

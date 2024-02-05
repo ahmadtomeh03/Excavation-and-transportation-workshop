@@ -12,30 +12,18 @@ package company_project;
 
 //المحطات
 public class Stations {
-    Integer id=0;
+    
      String station_name;
      String station_owner_name;
      String phone_number;
-     Double money;
+     Integer money=0;
 
-    public Stations(Integer id,String station_name, String station_owner_name, String phone_number, Double money) {
-        this.id=id;
-        this.station_name = station_name;
-        this.station_owner_name = station_owner_name;
-        this.phone_number = phone_number;
-        this.money = money;
+    public Stations() {
+        
     }
 
     public String getStation_name() {
         return station_name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public void setStation_name(String station_name) {
@@ -58,21 +46,21 @@ public class Stations {
         this.phone_number = phone_number;
     }
 
-    public Double getMoney() {
+    public Integer getMoney() {
         return money;
     }
 
-    public void setMoney(Double money) {
+    public void setMoney(Integer money) {
         this.money = money;
     }
      
      //اضافة رصيد على المحطة
-    public void addMoney(Double M){
+    public void addMoney(Integer M){
         this.money+=M;
     }
     
     // تعبئة بنرين من المحطة اذا كانت المصاريالي بالمحطة بتكفي بدفع منهن اذا لا يا بدفع كاش او شيك  
-    public void pay(double M){
+    public void pay(int M){
         if (M<=this.money) this.money-=M;
         else System.out.println("اما بتدفع كاش او شيك");
     }

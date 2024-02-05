@@ -5,6 +5,17 @@
  */
 package Comp;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.concurrent.locks.StampedLock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -14,8 +25,22 @@ public class anotherExpenses extends javax.swing.JPanel {
     /**
      * Creates new form anotherExpenses
      */
+    private Connection con;
+
     public anotherExpenses() {
         initComponents();
+    }
+
+    public Connection connect() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/company", "root", "root");
+            JOptionPane.showMessageDialog(null, "connected ");
+            return con;
+        } catch (Exception e) {
+
+        }
+        return null;
     }
 
     /**
@@ -70,6 +95,15 @@ public class anotherExpenses extends javax.swing.JPanel {
         ));
         jTable1.setShowHorizontalLines(false);
         jTable1.setShowVerticalLines(false);
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -103,6 +137,29 @@ public class anotherExpenses extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+        connect();
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        tb.setRowCount(0);
+        String query = "select Note,dates,amount from operating_expenses";
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String Note = rs.getString("Note");
+                String dates = rs.getString("dates");
+                String amount = String.valueOf(rs.getInt("amount"));
+                String operating_exp[] = {Note, dates, amount};
+                
+                tb.addRow(operating_exp);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTable1AncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
