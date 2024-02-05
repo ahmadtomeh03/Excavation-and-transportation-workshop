@@ -21,10 +21,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-              <Component id="jTextField3" min="-2" pref="287" max="-2" attributes="0"/>
-              <EmptySpace pref="75" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="37" pref="399" max="32767" attributes="0"/>
               <Component id="jTextField5" min="-2" pref="287" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
           </Group>
@@ -39,10 +37,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField3" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                  <Component id="jTextField5" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jTextField5" min="-2" pref="63" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" pref="43" max="-2" attributes="0"/>
               <EmptySpace pref="146" max="32767" attributes="0"/>
@@ -57,18 +52,6 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder justification="3" position="2" title="&#x642;&#x64a;&#x645;&#x629; &#x627;&#x644;&#x631;&#x635;&#x64a;&#x62f;&#xa;">
-              <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
-            </TitledBorder>
-          </Border>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder justification="3" position="2" title="&#x627;&#x644;&#x62a;&#x627;&#x631;&#x64a;&#x62e;&#xa;">
               <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
             </TitledBorder>
           </Border>
