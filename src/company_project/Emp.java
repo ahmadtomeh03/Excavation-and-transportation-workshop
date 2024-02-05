@@ -1,5 +1,16 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package company_project;
-public class employee {
+
+/**
+ *
+ * @author Lenovo
+ */
+public class Emp {
+
     String name;// الاسم 
     String numberofcard;// رقم الهوية
     Integer salary;//المبلغ 
@@ -28,4 +39,5 @@ public class employee {
     public void setNumberofphone(String numberofphone) {
         this.numberofphone = numberofphone;
     }
+
 }
