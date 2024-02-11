@@ -155,10 +155,10 @@ private Connection con;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public  Connection connect() {
+   public  Connection connect() {
     try {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost/company", "root", "root");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
         JOptionPane.showMessageDialog(null, "connected ");
         return con;
     } catch (Exception e) {
