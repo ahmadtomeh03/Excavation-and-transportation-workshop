@@ -6,7 +6,9 @@
 package Comp;
 
 import company_project.Employees;
+import company_project.additionalWorkPayment;
 import company_project.loans;
+import company_project.salaryPayment;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.*;
@@ -22,11 +24,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Lenovo
  */
+
+ 
 public class employee extends javax.swing.JPanel {
 
     /**
      * Creates new form employee
      */
+    salaryPayment salary = new salaryPayment();
+    additionalWorkPayment payment = new additionalWorkPayment();
     private Connection con;
     public employee() {
         initComponents();
@@ -222,6 +228,11 @@ public  Connection connect() {
 
         jButton3.setBackground(new java.awt.Color(255, 153, 0));
         jButton3.setText("دفع الراتب\n");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 153, 0));
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
@@ -345,7 +356,7 @@ public  Connection connect() {
     }//GEN-LAST:event_IDActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        payment.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void loanaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loanaddActionPerformed
@@ -354,7 +365,7 @@ public  Connection connect() {
     }//GEN-LAST:event_loanaddActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        //بس نعملها ونفيرها 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
@@ -378,6 +389,10 @@ public  Connection connect() {
     }
         
     }//GEN-LAST:event_jTable1AncestorAdded
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        salary.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
