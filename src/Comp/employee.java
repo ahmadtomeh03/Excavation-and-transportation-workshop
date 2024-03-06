@@ -6,6 +6,8 @@
 package Comp;
 
 import company_project.Employees;
+import company_project.add;
+import company_project.additionalWork;
 import company_project.additionalWorkPayment;
 import company_project.loans;
 import company_project.salaryPayment;
@@ -33,6 +35,8 @@ public class employee extends javax.swing.JPanel {
      */
     salaryPayment salary = new salaryPayment();
     additionalWorkPayment payment = new additionalWorkPayment();
+    additionalWork work = new additionalWork();
+//    add work=new add();
     private Connection con;
     public employee() {
         initComponents();
@@ -365,7 +369,7 @@ public  Connection connect() {
     }//GEN-LAST:event_loanaddActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //بس نعملها ونفيرها 
+       work.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded

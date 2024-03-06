@@ -1,12 +1,14 @@
 
 package Comp;
 
+import company_project.addMachine;
 import company_project.fuelForMachine;
 import company_project.machineCostPayment;
 import javax.swing.JTextField;
 public class machine extends javax.swing.JPanel {
     
     fuelForMachine fuel = new fuelForMachine();
+    addMachine machinee = new addMachine();
     public machine() {
         initComponents();
         System.out.println("machine1");
@@ -124,6 +126,11 @@ public class machine extends javax.swing.JPanel {
         jButton4.setBackground(new java.awt.Color(255, 153, 0));
         jButton4.setText("اضافة الية");
         jButton4.setToolTipText("");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setForeground(new java.awt.Color(255, 153, 51));
 
@@ -386,6 +393,10 @@ public class machine extends javax.swing.JPanel {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
       
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+         machinee.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

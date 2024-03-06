@@ -5,6 +5,8 @@
  */
 package Comp;
 
+import company_project.updateOnHours;
+
 /**
  *
  * @author Lenovo
@@ -14,7 +16,9 @@ public class Hours extends javax.swing.JPanel {
     /**
      * Creates new form Hours
      */
+    updateOnHours update = new updateOnHours();
     public Hours() {
+        
         initComponents();
     }
 
@@ -73,6 +77,11 @@ public class Hours extends javax.swing.JPanel {
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("تعديل الساعات");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -116,6 +125,10 @@ public class Hours extends javax.swing.JPanel {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        update.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
