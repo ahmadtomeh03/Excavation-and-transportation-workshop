@@ -57,7 +57,6 @@ public  Connection connect() {
         HourPrice = new javax.swing.JTextField();
         price = new javax.swing.JTextField();
         add = new javax.swing.JButton();
-        jTextField8 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,7 +65,7 @@ public  Connection connect() {
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("اضافة الية");
@@ -88,23 +87,27 @@ public  Connection connect() {
                 .addGap(28, 28, 28))
         );
 
+        name.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         name.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        name.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم الالية", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        name.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم الالية", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel2.setText("المعلومات الأساسية للالية");
 
+        number.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         number.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        number.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم الالية", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        number.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم الالية", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
+        HourPrice.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         HourPrice.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        HourPrice.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "سعر الساعة للالية", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        HourPrice.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "سعر الساعة للالية", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
+        price.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         price.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        price.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "سعر الالية", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        price.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "سعر الالية", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
         add.setBackground(new java.awt.Color(255, 153, 0));
-        add.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        add.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         add.setForeground(new java.awt.Color(255, 255, 255));
         add.setText("اضافة");
         add.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -118,18 +121,12 @@ public  Connection connect() {
             }
         });
 
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "صورة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(209, 209, 209)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,18 +137,15 @@ public  Connection connect() {
                             .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(399, 399, 399))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(177, 177, 177))))
+                .addComponent(jLabel2)
+                .addGap(399, 399, 399))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,11 +162,9 @@ public  Connection connect() {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(HourPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGap(191, 191, 191))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -260,7 +252,6 @@ public  Connection connect() {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField name;
     private javax.swing.JTextField number;
     private javax.swing.JTextField price;

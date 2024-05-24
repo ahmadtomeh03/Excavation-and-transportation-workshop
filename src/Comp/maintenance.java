@@ -5,6 +5,17 @@
  */
 package Comp;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -14,10 +25,21 @@ public class maintenance extends javax.swing.JPanel {
     /**
      * Creates new form maintenance
      */
+    private Connection con;
     public maintenance() {
         initComponents();
     }
-
+    public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,15 +55,18 @@ public class maintenance extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(51, 51, 51));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.orange, null, null));
         jPanel3.setPreferredSize(new java.awt.Dimension(950, 600));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel4.setBackground(new java.awt.Color(255, 153, 0));
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("سجل الصيانة");
+        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -49,27 +74,37 @@ public class maintenance extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jTable1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ملاحظات", "التاريخ", "اسم المحل", "المبلغ ", "اسم الالية"
+                "نوع الصيانة ", "التاريخ", "اسم المحل", "المبلغ ", "اسم الالية"
             }
         ));
         jTable1.setShowHorizontalLines(false);
         jTable1.setShowVerticalLines(false);
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -87,7 +122,8 @@ public class maintenance extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -100,12 +136,36 @@ public class maintenance extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+        connect();
+        String query1=  "select  Date_Maintenance, salry, shop_name, kind , name_of_mechanism\n" +
+                        "from Maintenance";
+        try (PreparedStatement ps = con.prepareStatement(query1)) {
+        ResultSet rs = ps.executeQuery();
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        tb.setRowCount(0);
+        while (rs.next()) {
+            
+            String date = rs.getString("Date_Maintenance");
+            int salary = rs.getInt("salry");
+            String shop_name=rs.getString("shop_name");
+            String kind = rs.getString("kind");
+            String name_of_mechanism=rs.getString("name_of_mechanism");
+            
+            String maint[] = {kind,date,shop_name,String.valueOf(salary),name_of_mechanism};
+            tb.addRow(maint);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_jTable1AncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,6 +5,18 @@
  */
 package company_project;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -15,11 +27,28 @@ public class fuelForMachine extends javax.swing.JFrame {
      * Creates new form fuelForMachine
      */
     chooseStation List = new chooseStation();
+    String x;
     public fuelForMachine() {
         initComponents();
         
     }
+ private Connection con;
 
+    public fuelForMachine(String text) {
+        initComponents();
+        x=text;
+    }
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,15 +58,27 @@ public class fuelForMachine extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        numberStation = new javax.swing.JLabel();
+        amount = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        note = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "المبلغ المسحوب", "المبلغ المودع", "الرصيد الحالي", "رقم صاحب المحطة", "اسم صاحب المحطة", "اسم المحطة"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,7 +87,7 @@ public class fuelForMachine extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 153, 51));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("سحب محروقات");
@@ -68,39 +109,21 @@ public class fuelForMachine extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم المحطة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        numberStation.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        numberStation.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        numberStation.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم المحطة ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jButton1.setText("اختيار");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        amount.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        amount.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        amount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المبلغ المسحوب\n", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+        amount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                amountActionPerformed(evt);
             }
         });
-
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المبلغ المسحوب\n", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "رصيد", "كاش", " " }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "نوع الدفع", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
 
         jButton2.setBackground(new java.awt.Color(255, 153, 0));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("سحب");
         jButton2.setToolTipText("");
@@ -109,36 +132,59 @@ public class fuelForMachine extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "الملاحظات", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        note.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        note.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        note.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "الملاحظات", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+
+        jTable2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "المبلغ المسحوب", "المبلغ المودع", "الرصيد الحالي", "رقم صاحب المحطة", "اسم المحطة", "رقم المحطة "
+            }
+        ));
+        jTable2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable2AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(120, 120, 120))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(note, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(numberStation, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -146,26 +192,22 @@ public class fuelForMachine extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(106, 106, 106)
-                                .addComponent(jButton1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(85, 85, 85)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(20, 20, 20)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(133, 133, 133))
+                                .addGap(26, 26, 26)
+                                .addComponent(numberStation, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(note, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,17 +228,130 @@ public class fuelForMachine extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_amountActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        List.setVisible(true);
-    }//GEN-LAST:event_jButton1MouseClicked
+    private void jTable2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable2AncestorAdded
+       connect();
+       String query1=   "select ID,name, phone , balance\n" +
+                        "from stations";
+       try (PreparedStatement ps = con.prepareStatement(query1)) {
+        ResultSet rs = ps.executeQuery();
+        DefaultTableModel tb = (DefaultTableModel) jTable2.getModel();
+        tb.setRowCount(0);
+        while (rs.next()) {
+            
+            int ID=rs.getInt("ID");
+            String name = rs.getString("Name");
+            String phone = rs.getString("phone");
+            int balance = rs.getInt("balance");
+            
+            
+            
+            int Withdraw_Balance=0;
+            String query3 ="select Withdraw_Balance from station_mechanism where ID_Station = ?";
+             try (PreparedStatement ps3 = con.prepareStatement(query3)) {
+                ps3.setInt(1,ID);    
+            ResultSet rs3 = ps3.executeQuery();
+            while(rs3.next())
+            {
+               Withdraw_Balance += rs3.getInt("Withdraw_Balance");
+               
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+             
+             
+            String query2 = "SELECT\n" +
+                            "  (SELECT SUM(salary) FROM cash WHERE ID_station = ?) AS sum_cash,\n" +
+                            "  (SELECT SUM(amount) FROM cheque WHERE ID_station = ?) AS sum_cheque";
+            int sa1=0,sa2=0;
+            try (PreparedStatement ps2 = con.prepareStatement(query2)) {
+            
+                    ps2.setInt(1,ID);
+                    ps2.setInt(2, ID);
+                    ResultSet rs2 = ps2.executeQuery();
+                    
+                    if(rs2.next())
+                    {
+                     sa1 = rs2.getInt("sum_cash");
+                     sa2 = rs2.getInt("sum_cheque");
+                    }
+                    else {
+                    System.out.println("no data");
+                    }   
+            } 
+            catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            String stat[] = { String.valueOf(Withdraw_Balance),String.valueOf(sa1+sa2),String.valueOf(balance),phone,name,String.valueOf(ID) };
+            tb.addRow(stat);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_jTable2AncestorAdded
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        DefaultTableModel model =(DefaultTableModel)jTable2.getModel();
+         int selectedRow = jTable2.getSelectedRow();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+          numberStation.setText(model.getValueAt(selectedRow, 5).toString());
+          
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        connect();
+        
+        String query=   "insert into station_mechanism(ID_Mechanism, ID_Station, Withdraw_Balance, Withdrawal_Date, note)\n" +
+                        "values (?,?,?,?,?)";
+        
+        try (PreparedStatement ps = con.prepareStatement(query)) 
+        {
+            
+        ps.setString(1,x);
+        ps.setInt(2,Integer.parseInt(numberStation.getText()));
+        ps.setInt(3,Integer.parseInt(amount.getText()));
+        LocalDate date = LocalDate.now();
+        ps.setString(4,date.toString());
+        ps.setString(5,note.getText());
+        
+            int rowsAffected1 = ps.executeUpdate();
+            if (rowsAffected1 > 0) {
+                System.out.println("Rows affected: " + rowsAffected1);
+                String query2 = "update stations\n" +
+                                "set balance = balance - ?\n" +
+                                "where ID=?";
+                try (PreparedStatement ps2 = con.prepareStatement(query2)) {
+        ps2.setInt(1,Integer.parseInt(amount.getText()));
+        ps2.setInt(2,Integer.parseInt(numberStation.getText()));
+            int rowsAffected2 = ps2.executeUpdate();
+            if (rowsAffected2 > 0) {
+                System.out.println("Rows affected: " + rowsAffected2);
+            } else {
+                System.out.println("No rows affected");
+            }
+            
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+                
+                
+            } else {
+                System.out.println("No rows affected");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,14 +389,16 @@ public class fuelForMachine extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField amount;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField note;
+    private javax.swing.JLabel numberStation;
     // End of variables declaration//GEN-END:variables
 }

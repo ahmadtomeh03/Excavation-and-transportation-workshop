@@ -3,7 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+      <Color blue="33" green="33" red="33" type="rgb"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -29,10 +29,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel3" min="-2" pref="589" max="-2" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -41,7 +41,7 @@
     <Container class="javax.swing.JPanel" name="jPanel3">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="33" green="33" red="33" type="rgb"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -68,20 +68,26 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="541" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="490" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jPanel4">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="99" red="ff" type="rgb"/>
+            </Property>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jLabel4" min="-2" pref="83" max="-2" attributes="0"/>
+                      <Component id="jLabel4" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -90,8 +96,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" pref="16" max="-2" attributes="0"/>
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <Component id="jLabel4" min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -100,10 +106,11 @@
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
+                  <Font name="Calibri" size="20" style="1"/>
                 </Property>
-                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="&#x633;&#x62c;&#x644; &#x627;&#x644;&#x635;&#x64a;&#x627;&#x646;&#x629;"/>
+                <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -117,9 +124,12 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri" size="14" style="1"/>
+                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="0">
-                    <Column editable="true" title="&#x645;&#x644;&#x627;&#x62d;&#x638;&#x627;&#x62a;" type="java.lang.Object"/>
+                    <Column editable="true" title="&#x646;&#x648;&#x639; &#x627;&#x644;&#x635;&#x64a;&#x627;&#x646;&#x629; " type="java.lang.Object"/>
                     <Column editable="true" title="&#x627;&#x644;&#x62a;&#x627;&#x631;&#x64a;&#x62e;" type="java.lang.Object"/>
                     <Column editable="true" title="&#x627;&#x633;&#x645; &#x627;&#x644;&#x645;&#x62d;&#x644;" type="java.lang.Object"/>
                     <Column editable="true" title="&#x627;&#x644;&#x645;&#x628;&#x644;&#x63a; " type="java.lang.Object"/>
@@ -161,6 +171,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jTable1AncestorAdded"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

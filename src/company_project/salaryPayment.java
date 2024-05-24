@@ -8,6 +8,15 @@ package company_project;
 import Comp.cash;
 import Comp.check;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,14 +29,31 @@ public class salaryPayment extends javax.swing.JFrame {
      */
     cash c =new cash();
     check ch = new check();
-    
+    private String x1;
+    private int x2;
+    private Connection con;
     public salaryPayment() {
         initComponents();
         jLayeredPane3.add(c);
         jLayeredPane3.add(ch);
         c.setVisible(false);
         ch.setVisible(false);
+        c.setID(x1);
+        ch.setID(x1);
+        ch.setKind("Employees");
         
+    }
+
+    public salaryPayment(String text) {
+        initComponents();
+        jLayeredPane3.add(c);
+        jLayeredPane3.add(ch);
+        c.setVisible(false);
+        ch.setVisible(false);
+        x1=text;
+        c.setID(x1);
+        ch.setID(x1);
+        ch.setKind("Employees");
     }
 
     /**
@@ -51,6 +77,9 @@ public class salaryPayment extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
+        salary = new javax.swing.JLabel();
+        totalpaid = new javax.swing.JLabel();
+        salaryfinal = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -68,9 +97,9 @@ public class salaryPayment extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("دفع الراتب");
@@ -96,7 +125,7 @@ public class salaryPayment extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jButton2.setBackground(new java.awt.Color(255, 153, 0));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jButton2.setText("دفع نقدي");
         jButton2.setFocusPainted(false);
         jButton2.setFocusable(false);
@@ -135,7 +164,7 @@ public class salaryPayment extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jButton1.setText("دفع شيك");
         jButton1.setFocusPainted(false);
         jButton1.setFocusable(false);
@@ -182,16 +211,53 @@ public class salaryPayment extends javax.swing.JFrame {
             .addComponent(jLayeredPane3)
         );
 
+        salary.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        salary.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        salary.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "راتب الموظف", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+        salary.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                salaryAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
+        totalpaid.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        totalpaid.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        totalpaid.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المبلغ المدفوع ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+        totalpaid.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                totalpaidAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
+        salaryfinal.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        salaryfinal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        salaryfinal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المبلغ المتبقي ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+        salaryfinal.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                salaryfinalAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+                        .addGap(69, 69, 69)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,15 +268,31 @@ public class salaryPayment extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(36, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(salaryfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(totalpaid, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalpaid, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salaryfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -261,6 +343,66 @@ public class salaryPayment extends javax.swing.JFrame {
         jPanel4.setBackground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void salaryAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_salaryAncestorAdded
+        connect();
+        String query1="select salary from employees where ID_Number = ? ";
+        String query2="select sum(salary) from cash where ID_Number=? AND kind='Employees'";
+        String query3="select sum(Amount) from cheque where ID_Number=? AND kind='Employees'";
+        int sumcash=0;
+        int sumcheque=0;
+        int salaryEmp=0;
+        try (PreparedStatement ps = con.prepareStatement(query1)) {
+    ps.setString(1, x1);
+    ResultSet rs = ps.executeQuery();
+    if (rs.next()) {
+        salaryEmp = rs.getInt("salary");
+        salary.setText(String.valueOf(salaryEmp));
+    }
+} catch (SQLException ex) {
+    Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+}
+        try (PreparedStatement ps = con.prepareStatement(query2)) {
+    ps.setString(1, x1);
+    ResultSet rs = ps.executeQuery();
+    if (rs.next()) {
+        int f=rs.getInt("sum(salary)");
+        sumcash=f;
+    }
+} catch (SQLException ex) {
+    Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+}
+          try (PreparedStatement ps = con.prepareStatement(query3)) {
+    ps.setString(1, x1);
+    ResultSet rs = ps.executeQuery();
+    if (rs.next()) {
+        int f=rs.getInt("sum(Amount)");
+        sumcheque=f;
+    }
+} catch (SQLException ex) {
+    Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+}
+        totalpaid.setText(String.valueOf(sumcash+sumcheque));
+        salaryfinal.setText(String.valueOf(salaryEmp-sumcash-sumcheque));
+    }//GEN-LAST:event_salaryAncestorAdded
+
+    private void totalpaidAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_totalpaidAncestorAdded
+
+    }//GEN-LAST:event_totalpaidAncestorAdded
+
+    private void salaryfinalAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_salaryfinalAncestorAdded
+
+    }//GEN-LAST:event_salaryfinalAncestorAdded
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     /**
      * @param args the command line arguments
      */
@@ -309,5 +451,8 @@ public class salaryPayment extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel salary;
+    private javax.swing.JLabel salaryfinal;
+    private javax.swing.JLabel totalpaid;
     // End of variables declaration//GEN-END:variables
 }

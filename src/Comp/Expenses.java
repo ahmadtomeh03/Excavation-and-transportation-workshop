@@ -50,45 +50,46 @@ public class Expenses extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(51, 51, 51));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.orange, null, null));
         jPanel1.setPreferredSize(new java.awt.Dimension(930, 110));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
         jLabel1.setText("النفقات");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel3.setText("البحث");
 
-        fuelButton.setBackground(new java.awt.Color(255, 255, 255));
+        fuelButton.setBackground(new java.awt.Color(255, 153, 0));
         buttonGroup1.add(fuelButton);
-        fuelButton.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        fuelButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         fuelButton.setSelected(true);
         fuelButton.setText("سحب محروقات");
+        fuelButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         fuelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fuelButtonActionPerformed(evt);
             }
         });
 
-        maintenanceButton.setBackground(new java.awt.Color(255, 255, 255));
+        maintenanceButton.setBackground(new java.awt.Color(255, 153, 0));
         buttonGroup1.add(maintenanceButton);
-        maintenanceButton.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        maintenanceButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         maintenanceButton.setText("الصيانة");
+        maintenanceButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         maintenanceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 maintenanceButtonActionPerformed(evt);
             }
         });
 
-        anotherExpensesButton.setBackground(new java.awt.Color(255, 255, 255));
+        anotherExpensesButton.setBackground(new java.awt.Color(255, 153, 0));
         buttonGroup1.add(anotherExpensesButton);
-        anotherExpensesButton.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        anotherExpensesButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         anotherExpensesButton.setText("مصاريف تشغيلية");
+        anotherExpensesButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         anotherExpensesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 anotherExpensesButtonActionPerformed(evt);
@@ -100,12 +101,12 @@ public class Expenses extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fuelButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(maintenanceButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(anotherExpensesButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
+                .addGap(84, 84, 84)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(maintenanceButton)
+                    .addComponent(fuelButton)
+                    .addComponent(anotherExpensesButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,13 +122,6 @@ public class Expenses extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(fuelButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(maintenanceButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(anotherExpensesButton)
-                        .addContainerGap())
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,11 +130,22 @@ public class Expenses extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap()))))
+                            .addContainerGap()))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                                .addComponent(anotherExpensesButton))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(fuelButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(maintenanceButton)))
+                        .addContainerGap())))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
 
+        jLayeredPane2.setBackground(new java.awt.Color(51, 51, 51));
         jLayeredPane2.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -162,16 +167,14 @@ public class Expenses extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 998, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1060, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())

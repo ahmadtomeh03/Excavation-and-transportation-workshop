@@ -61,11 +61,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jPanel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -81,8 +79,21 @@
                               </Group>
                           </Group>
                       </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="36" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <Component id="salaryfinal" min="-2" pref="305" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="totalpaid" min="-2" pref="305" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="salary" min="-2" pref="305" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -91,7 +102,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="salary" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="totalpaid" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="salaryfinal" min="-2" pref="67" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -121,8 +138,8 @@
               <Color blue="33" green="99" red="ff" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder/>
+              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                <BevelBorder/>
               </Border>
             </Property>
           </Properties>
@@ -151,7 +168,7 @@
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="36" style="0"/>
+                  <Font name="Calibri" size="36" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -195,7 +212,7 @@
                   <Color blue="0" green="99" red="ff" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="24" style="0"/>
+                  <Font name="Calibri" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x62f;&#x641;&#x639; &#x646;&#x642;&#x62f;&#x64a;"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -259,7 +276,7 @@
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="24" style="0"/>
+                  <Font name="Calibri" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x62f;&#x641;&#x639; &#x634;&#x64a;&#x643;"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -309,6 +326,60 @@
             </Container>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="salary">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Calibri" size="15" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder justification="3" title="&#x631;&#x627;&#x62a;&#x628; &#x627;&#x644;&#x645;&#x648;&#x638;&#x641;">
+                  <Font PropertyName="font" name="Calibri" size="15" style="1"/>
+                </TitledBorder>
+              </Border>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="salaryAncestorAdded"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="totalpaid">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Calibri" size="15" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder justification="3" title="&#x627;&#x644;&#x645;&#x628;&#x644;&#x63a; &#x627;&#x644;&#x645;&#x62f;&#x641;&#x648;&#x639; ">
+                  <Font PropertyName="font" name="Calibri" size="15" style="1"/>
+                </TitledBorder>
+              </Border>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="totalpaidAncestorAdded"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="salaryfinal">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Calibri" size="15" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder justification="3" title="&#x627;&#x644;&#x645;&#x628;&#x644;&#x63a; &#x627;&#x644;&#x645;&#x62a;&#x628;&#x642;&#x64a; ">
+                  <Font PropertyName="font" name="Calibri" size="15" style="1"/>
+                </TitledBorder>
+              </Border>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="salaryfinalAncestorAdded"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

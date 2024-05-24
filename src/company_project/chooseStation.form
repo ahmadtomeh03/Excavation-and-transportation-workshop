@@ -125,7 +125,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="15" style="0"/>
+                      <Font name="Calibri" size="15" style="1"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="text" type="java.lang.String" value="&#x642;&#x627;&#x626;&#x645;&#x629; &#x627;&#x644;&#x645;&#x62d;&#x637;&#x627;&#x62a;"/>
@@ -142,6 +142,9 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="jTable1">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Calibri" size="14" style="1"/>
+                    </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="6" rowCount="0">
                         <Column editable="true" title="&#x627;&#x644;&#x645;&#x628;&#x644;&#x63a; &#x627;&#x644;&#x645;&#x633;&#x62d;&#x648;&#x628;" type="java.lang.Object"/>
@@ -167,7 +170,7 @@
               <Color blue="0" green="99" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="15" style="0"/>
+              <Font name="Calibri" size="15" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>

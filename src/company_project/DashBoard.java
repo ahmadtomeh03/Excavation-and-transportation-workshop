@@ -8,6 +8,7 @@ package company_project;
 import Comp.Expenses;
 import Comp.employee;
 import Comp.machine;
+import Comp.mainPage;
 import Comp.stations;
 import Comp.workshop;
 import javax.swing.border.Border;
@@ -23,18 +24,22 @@ public class DashBoard extends javax.swing.JFrame {
     workshop w =new workshop();
     machine m = new machine();
     Expenses E = new Expenses();
+    mainPage ma =new mainPage();
     public DashBoard() {
         initComponents();
+        jLayeredPane1.add(ma);
         jLayeredPane1.add(e);
         jLayeredPane1.add(w);
         jLayeredPane1.add(s);
         jLayeredPane1.add(m);
         jLayeredPane1.add(E);
+        ma.setVisible(false);
         e.setVisible(false);
         s.setVisible(false);
         m.setVisible(false);
         w.setVisible(false);
         E.setVisible(false);
+        
     }
 
     /**
@@ -57,28 +62,31 @@ public class DashBoard extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1318, 880));
         setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, java.awt.Color.lightGray, null, null));
         jPanel4.setPreferredSize(new java.awt.Dimension(250, 800));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(238, 238, 238));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("القائمة الرئيسية");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel8.setText("____________________________");
 
+        jButton4.setBackground(new java.awt.Color(255, 153, 0));
+        jButton4.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         jButton4.setText("الموظفين");
         jButton4.setBorder(null);
         jButton4.setBorderPainted(false);
@@ -88,7 +96,8 @@ public class DashBoard extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setBackground(new java.awt.Color(255, 153, 0));
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         jButton1.setText("المحطات");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,6 +106,8 @@ public class DashBoard extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 153, 0));
+        jButton2.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         jButton2.setText("الورشات");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -109,6 +120,8 @@ public class DashBoard extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(255, 153, 0));
+        jButton3.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         jButton3.setText("الاليات");
         jButton3.setBorderPainted(false);
         jButton3.setOpaque(false);
@@ -118,17 +131,38 @@ public class DashBoard extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("تسجيل خروج");
+        jButton5.setBackground(new java.awt.Color(255, 0, 0));
+        jButton5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(238, 238, 238));
+        jButton5.setText("اغلاق البرنامج ");
         jButton5.setBorder(null);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel9.setText("____________________________");
 
+        jButton6.setBackground(new java.awt.Color(255, 153, 0));
+        jButton6.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         jButton6.setText("النفقات");
         jButton6.setBorder(null);
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton6MouseClicked(evt);
+            }
+        });
+
+        jButton7.setBackground(new java.awt.Color(255, 153, 0));
+        jButton7.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
+        jButton7.setText("الرصيد ");
+        jButton7.setBorder(null);
+        jButton7.setBorderPainted(false);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
             }
         });
 
@@ -145,21 +179,23 @@ public class DashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(52, 52, 52))))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,21 +204,23 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel8)
-                .addGap(71, 71, 71)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(123, 123, 123)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel4, java.awt.BorderLayout.LINE_END);
@@ -195,7 +233,7 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1314, Short.MAX_VALUE)
+            .addGap(0, 1287, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,11 +264,11 @@ public class DashBoard extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1291, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
         );
 
         pack();
@@ -238,6 +276,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         e.setVisible(true);
+        ma.setVisible(false);
         s.setVisible(false);
         m.setVisible(false);
         w.setVisible(false);
@@ -245,11 +284,12 @@ public class DashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         s.setVisible(true);
+        ma.setVisible(false);
         e.setVisible(false);
         m.setVisible(false);
         w.setVisible(false);
@@ -259,6 +299,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         w.setVisible(true);
+        ma.setVisible(false);
         e.setVisible(false);
         m.setVisible(false);
         s.setVisible(false);
@@ -267,6 +308,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         m.setVisible(true);
+        ma.setVisible(false);
         e.setVisible(false);
         s.setVisible(false);
         w.setVisible(false);
@@ -275,11 +317,25 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         E.setVisible(true);
+        ma.setVisible(false);
         e.setVisible(false);
         m.setVisible(false);
         w.setVisible(false);
         s.setVisible(false);
     }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        ma.setVisible(true);
+        E.setVisible(false);
+        e.setVisible(false);
+        m.setVisible(false);
+        w.setVisible(false);
+        s.setVisible(false);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     
     
@@ -326,6 +382,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

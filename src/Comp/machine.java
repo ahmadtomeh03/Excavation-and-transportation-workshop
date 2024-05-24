@@ -1,14 +1,39 @@
 
 package Comp;
 
+import company_project.RevenuesAndExpenses;
 import company_project.addMachine;
+import company_project.addmaintenance;
 import company_project.fuelForMachine;
+import company_project.loans;
 import company_project.machineCostPayment;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 public class machine extends javax.swing.JPanel {
     
-    fuelForMachine fuel = new fuelForMachine();
+    
     addMachine machinee = new addMachine();
+    private Connection con;
+    public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     public machine() {
         initComponents();
         System.out.println("machine1");
@@ -34,12 +59,13 @@ public class machine extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         MachineList = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -51,12 +77,14 @@ public class machine extends javax.swing.JPanel {
         jRadioButton4 = new javax.swing.JRadioButton();
         jRadioButton5 = new javax.swing.JRadioButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(51, 51, 51));
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.orange, null, null));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel8.setBackground(new java.awt.Color(255, 153, 0));
+
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel6.setText("الاجراءات");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -76,22 +104,22 @@ public class machine extends javax.swing.JPanel {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(238, 238, 238));
         jLabel8.setText("اسم الالية");
 
-        name_of_machine.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        name_of_machine.setText("هون بيجي اسم الموظف\n");
+        name_of_machine.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         name_of_machine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 name_of_machineActionPerformed(evt);
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(238, 238, 238));
         jLabel9.setText("رقم الالية");
 
-        number_of_machine.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        number_of_machine.setText("بيجي رقم الموظف\n");
+        number_of_machine.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         number_of_machine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 number_of_machineActionPerformed(evt);
@@ -102,6 +130,7 @@ public class machine extends javax.swing.JPanel {
         jLabel10.setText("_____________________________________");
 
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jButton1.setText("دفع لسعر الالية");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -115,6 +144,7 @@ public class machine extends javax.swing.JPanel {
         });
 
         jButton3.setBackground(new java.awt.Color(255, 153, 0));
+        jButton3.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jButton3.setText("سحب محروقات ");
         jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -123,18 +153,8 @@ public class machine extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 153, 0));
-        jButton4.setText("اضافة الية");
-        jButton4.setToolTipText("");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jSeparator1.setForeground(new java.awt.Color(255, 153, 51));
-
         jButton5.setBackground(new java.awt.Color(255, 153, 0));
+        jButton5.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jButton5.setText("بيع الالية");
         jButton5.setToolTipText("");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -143,41 +163,56 @@ public class machine extends javax.swing.JPanel {
             }
         });
 
+        jButton6.setBackground(new java.awt.Color(255, 153, 0));
+        jButton6.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        jButton6.setText("الأمور المالية للالية ");
+        jButton6.setToolTipText("");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(255, 153, 0));
+        jButton2.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        jButton2.setText("صيانة الالية ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(number_of_machine, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                    .addComponent(name_of_machine, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addComponent(jSeparator1)
-                .addContainerGap())
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jLabel10)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(number_of_machine, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(name_of_machine, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,31 +220,44 @@ public class machine extends javax.swing.JPanel {
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(number_of_machine, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(number_of_machine, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(name_of_machine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(name_of_machine, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jLabel10)
-                .addGap(28, 28, 28)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         MachineList.setBackground(new java.awt.Color(255, 255, 255));
         MachineList.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.orange, null, null));
 
+        jPanel4.setBackground(new java.awt.Color(255, 153, 0));
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         jLabel4.setText("قائمة الاليات");
+
+        jButton4.setBackground(new java.awt.Color(0, 0, 0));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Comp/more.png"))); // NOI18N
+        jButton4.setToolTipText("");
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -217,17 +265,23 @@ public class machine extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -236,8 +290,23 @@ public class machine extends javax.swing.JPanel {
                 "الحالة", "المبلغ المتبقي", "المبلغ المدفوع شيك", "المبلغ المدفوع كاش", "سعر الساعة", "سعر الالية", "اسم الالية", "رقم الالية"
             }
         ));
+        jTable1.setSelectionBackground(new java.awt.Color(102, 102, 102));
         jTable1.setShowHorizontalLines(false);
         jTable1.setShowVerticalLines(false);
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout MachineListLayout = new javax.swing.GroupLayout(MachineList);
@@ -255,15 +324,13 @@ public class machine extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE))
         );
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.orange, null, null));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
         jLabel1.setText("الاليات");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jLabel3.setText("البحث");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -271,16 +338,29 @@ public class machine extends javax.swing.JPanel {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("فرز");
 
-        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jRadioButton3.setBackground(new java.awt.Color(255, 153, 0));
         buttonGroup1.add(jRadioButton3);
+        jRadioButton3.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jRadioButton3.setText("غير مكتملة\n");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
 
-        jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jRadioButton4.setBackground(new java.awt.Color(255, 153, 0));
         buttonGroup1.add(jRadioButton4);
+        jRadioButton4.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jRadioButton4.setText("مكتملة");
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
 
-        jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jRadioButton5.setBackground(new java.awt.Color(255, 153, 0));
         buttonGroup1.add(jRadioButton5);
+        jRadioButton5.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jRadioButton5.setText("مباعة");
         jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,20 +373,21 @@ public class machine extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jRadioButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
                         .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jRadioButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(jRadioButton3)
+                        .addGap(58, 58, 58)
+                        .addComponent(jRadioButton4)
+                        .addGap(45, 45, 45)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jLabel1)
@@ -315,20 +396,25 @@ public class machine extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jRadioButton3)
-                                .addComponent(jRadioButton5)
-                                .addComponent(jRadioButton4)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jRadioButton4))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jRadioButton3)
+                                    .addComponent(jRadioButton5))))
                         .addContainerGap())))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
@@ -341,25 +427,22 @@ public class machine extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(MachineList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(MachineList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(MachineList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -372,22 +455,167 @@ public class machine extends javax.swing.JPanel {
     }//GEN-LAST:event_number_of_machineActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        machineCostPayment m = new machineCostPayment(number_of_machine.getText()); 
-        System.out.println("machine2");
-        m.setVisible(true);
-        System.out.println("machine3");
+        
+               String IDD = number_of_machine.getText();
+               System.out.println(IDD);
+               if (!IDD.isEmpty() ) { 
+                machineCostPayment m = new machineCostPayment(number_of_machine.getText()); 
+                System.out.println("machine2");
+                m.setVisible(true);
+                System.out.println("machine3");
+                    }
+               else {
+    
+    JOptionPane.showMessageDialog(this, "Please enter a valid Mechanism number.", "Error", JOptionPane.ERROR_MESSAGE);
+}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        String IDD = number_of_machine.getText();
+               if (!IDD.isEmpty() ) { 
+                fuelForMachine fuel = new fuelForMachine(number_of_machine.getText());
         fuel.setVisible(true);
+                    }
+               else {
+    
+    JOptionPane.showMessageDialog(this, "Please enter a valid Mechanism number.", "Error", JOptionPane.ERROR_MESSAGE);
+}
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       //فش الها اشي بس بتتفير الحالة لمباعة 
+       
+        String IDD = number_of_machine.getText();
+               if (!IDD.isEmpty() ) { 
+               
+                     connect();
+       String query="select\n" +
+                    "(select sum(salary) from cash where ID_Mechanism=?)As sum_cash ,\n" +
+                    "(select sum(amount) from cheque where ID_Mechanism=?)As sum_cheque,\n" +
+                    "(select price from mechanism where ID=?) As price";
+                   int sa1=0 , sa2=0 , price=0;
+        try (PreparedStatement ps = con.prepareStatement(query))
+        {
+            ps.setString(1,number_of_machine.getText());
+            ps.setString(2,number_of_machine.getText());
+            ps.setString(3,number_of_machine.getText());
+            
+            ResultSet rs = ps.executeQuery();
+        
+        if (rs.next())
+        {
+            
+            
+            sa1=rs.getInt("sum_cash");
+            sa2=rs.getInt("sum_cheque");
+            price=rs.getInt("price");
+            System.out.println(sa1+" "+sa2+" "+price);  
+        }
+        else {
+            System.out.println("no data");
+             }   
+        } 
+            catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+          if (sa1 + sa2 == price) {
+              String query3=    "update mechanism\n" +
+                                "set sold=1\n" +
+                                "where ID=?";
+              
+              
+        try (PreparedStatement ps3 = con.prepareStatement(query3))
+        {
+            ps3.setString(1,number_of_machine.getText());    
+            int row = ps3.executeUpdate();
+        
+        if (row>0)
+        {
+        JOptionPane.showMessageDialog(
+        null,
+        "This Machine Has Been Sold",
+        "Information",
+        JOptionPane.INFORMATION_MESSAGE
+                    );
+              
+        }
+        else {
+            System.out.println("no data");
+             }   
+        } 
+            catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+              
+        } 
+          else {
+            JOptionPane.showMessageDialog(
+                null,
+                "This vehicle cannot be sold due to non-payment of its full price",
+                "Warning",
+                JOptionPane.WARNING_MESSAGE
+            );
+        }
+                   
+                    }
+               else {
+    
+    JOptionPane.showMessageDialog(this, "Please enter a valid Mechanism number.", "Error", JOptionPane.ERROR_MESSAGE);
+}
+        
+        
+      
+            
+       
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
-        // TODO add your handling code here:
+        connect();
+        String query1 =  "select *\n" +
+                         "from mechanism;";
+        try (PreparedStatement ps = con.prepareStatement(query1)) {
+        ResultSet rs = ps.executeQuery();
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        tb.setRowCount(0);
+        while (rs.next()) {
+            String ID = rs.getString("ID");
+            String name = rs.getString("Name");
+            int price = rs.getInt("price");
+            String Hour_Price = String.valueOf(rs.getInt("Hour_Price"));
+            boolean sold = rs.getBoolean("sold");
+            
+            String query2 = "SELECT\n" +
+                            "  (SELECT SUM(salary) FROM cash WHERE ID_Mechanism = ? and kind='Mechanism') AS sum_cash,\n" +
+                            "  (SELECT SUM(amount) FROM cheque WHERE ID_mechanism = ? and kind='Mechanism') AS sum_cheque";
+            int sa1=0,sa2=0;
+            try (PreparedStatement ps2 = con.prepareStatement(query2)) {
+            
+                    ps2.setString(1,ID);
+                    ps2.setString(2, ID);
+                    ResultSet rs2 = ps2.executeQuery();
+                    
+                    if(rs2.next())
+                    {
+                     sa1 = rs2.getInt("sum_cash");
+                     sa2 = rs2.getInt("sum_cheque");
+                    }
+                    else {
+                    System.out.println("no data");
+                    }   
+            } 
+            catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            if(price - sa1 - sa2 == 0 && sold == true){
+            String mech[] = { String.valueOf(sold) , String.valueOf(price - sa1 - sa2), String.valueOf(sa2), String.valueOf(sa1) ,Hour_Price, String.valueOf(price), name,ID };
+            tb.addRow(mech);
+            }
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
     }//GEN-LAST:event_jRadioButton5ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -398,14 +626,194 @@ public class machine extends javax.swing.JPanel {
          machinee.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        DefaultTableModel model =(DefaultTableModel)jTable1.getModel();
+        int selectedRow = jTable1.getSelectedRow();
+        
+        name_of_machine.setText(model.getValueAt(selectedRow, 6).toString());
+        number_of_machine.setText(model.getValueAt(selectedRow, 7).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        
+        String IDD = number_of_machine.getText();
+               if (!IDD.isEmpty() ) { 
+                      RevenuesAndExpenses re =new RevenuesAndExpenses(number_of_machine.getText());
+        re.setVisible(true);
+ 
+                    }
+               else {
+    
+    JOptionPane.showMessageDialog(this, "Please enter a valid Mechanism number.", "Error", JOptionPane.ERROR_MESSAGE);
+}
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        
+        String IDD = number_of_machine.getText();
+               if (!IDD.isEmpty() ) { 
+        addmaintenance addmaintenance1 =new addmaintenance(number_of_machine.getText(),name_of_machine.getText());
+        addmaintenance1.setVisible(true);
+                    }
+               else {
+    
+    JOptionPane.showMessageDialog(this, "Please enter a valid Mechanism number.", "Error", JOptionPane.ERROR_MESSAGE);
+}
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+        connect();
+        String query1 =  "select *\n" +
+                         "from mechanism;";
+         try (PreparedStatement ps = con.prepareStatement(query1)) {
+        ResultSet rs = ps.executeQuery();
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        tb.setRowCount(0);
+        while (rs.next()) {
+            String ID = rs.getString("ID");
+            String name = rs.getString("Name");
+            int price = rs.getInt("price");
+            String Hour_Price = String.valueOf(rs.getInt("Hour_Price"));
+            String sold = String.valueOf(rs.getBoolean("sold"));
+            
+            String query2 = "SELECT\n" +
+                            "  (SELECT SUM(salary) FROM cash WHERE ID_Mechanism = ? and kind='Mechanism') AS sum_cash,\n" +
+                            "  (SELECT SUM(amount) FROM cheque WHERE ID_mechanism = ? and kind='Mechanism') AS sum_cheque";
+            int sa1=0,sa2=0;
+            try (PreparedStatement ps2 = con.prepareStatement(query2)) {
+            
+                    ps2.setString(1,ID);
+                    ps2.setString(2, ID);
+                    ResultSet rs2 = ps2.executeQuery();
+                    
+                    if(rs2.next())
+                    {
+                     sa1 = rs2.getInt("sum_cash");
+                     sa2 = rs2.getInt("sum_cheque");
+                    }
+                    else {
+                    System.out.println("no data");
+                    }   
+            } 
+            catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            String mech[] = { sold , String.valueOf(price - sa1 - sa2), String.valueOf(sa2), String.valueOf(sa1) ,Hour_Price, String.valueOf(price), name,ID };
+            tb.addRow(mech);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_jTable1AncestorAdded
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        connect();
+        String query1 =  "select *\n" +
+                         "from mechanism;";
+        try (PreparedStatement ps = con.prepareStatement(query1)) {
+        ResultSet rs = ps.executeQuery();
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        tb.setRowCount(0);
+        while (rs.next()) {
+            String ID = rs.getString("ID");
+            String name = rs.getString("Name");
+            int price = rs.getInt("price");
+            String Hour_Price = String.valueOf(rs.getInt("Hour_Price"));
+            String sold = String.valueOf(rs.getBoolean("sold"));
+            
+            String query2 = "SELECT\n" +
+                            "  (SELECT SUM(salary) FROM cash WHERE ID_Mechanism = ? and kind='Mechanism') AS sum_cash,\n" +
+                            "  (SELECT SUM(amount) FROM cheque WHERE ID_mechanism = ? and kind='Mechanism') AS sum_cheque";
+            int sa1=0,sa2=0;
+            try (PreparedStatement ps2 = con.prepareStatement(query2)) {
+            
+                    ps2.setString(1,ID);
+                    ps2.setString(2, ID);
+                    ResultSet rs2 = ps2.executeQuery();
+                    
+                    if(rs2.next())
+                    {
+                     sa1 = rs2.getInt("sum_cash");
+                     sa2 = rs2.getInt("sum_cheque");
+                    }
+                    else {
+                    System.out.println("no data");
+                    }   
+            } 
+            catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            if(price - sa1 - sa2 == 0){
+            String mech[] = { sold , String.valueOf(price - sa1 - sa2), String.valueOf(sa2), String.valueOf(sa1) ,Hour_Price, String.valueOf(price), name,ID };
+            tb.addRow(mech);
+            }
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        connect();
+        String query1 =  "select *\n" +
+                         "from mechanism;";
+        try (PreparedStatement ps = con.prepareStatement(query1)) {
+        ResultSet rs = ps.executeQuery();
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        tb.setRowCount(0);
+        while (rs.next()) {
+            String ID = rs.getString("ID");
+            String name = rs.getString("Name");
+            int price = rs.getInt("price");
+            String Hour_Price = String.valueOf(rs.getInt("Hour_Price"));
+            String sold = String.valueOf(rs.getBoolean("sold"));
+            
+            String query2 = "SELECT\n" +
+                            "  (SELECT SUM(salary) FROM cash WHERE ID_Mechanism = ? and kind='Mechanism') AS sum_cash,\n" +
+                            "  (SELECT SUM(amount) FROM cheque WHERE ID_mechanism = ? and kind='Mechanism') AS sum_cheque";
+            int sa1=0,sa2=0;
+            try (PreparedStatement ps2 = con.prepareStatement(query2)) {
+            
+                    ps2.setString(1,ID);
+                    ps2.setString(2, ID);
+                    ResultSet rs2 = ps2.executeQuery();
+                    
+                    if(rs2.next())
+                    {
+                     sa1 = rs2.getInt("sum_cash");
+                     sa2 = rs2.getInt("sum_cheque");
+                    }
+                    else {
+                    System.out.println("no data");
+                    }   
+            } 
+            catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            if(price - sa1 - sa2 != 0){
+            String mech[] = { sold , String.valueOf(price - sa1 - sa2), String.valueOf(sa2), String.valueOf(sa1) ,Hour_Price, String.valueOf(price), name,ID };
+            tb.addRow(mech);
+            }
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MachineList;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -422,7 +830,6 @@ public class machine extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField name_of_machine;

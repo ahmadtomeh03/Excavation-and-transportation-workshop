@@ -5,6 +5,17 @@
  */
 package Comp;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lenovo
@@ -14,10 +25,22 @@ public class cashforadditional extends javax.swing.JPanel {
     /**
      * Creates new form cashforadditional
      */
+    String f;
+    private Connection con;
     public cashforadditional() {
         initComponents();
     }
-
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,64 +50,93 @@ public class cashforadditional extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        finalSalary = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "سعر الساعة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
-
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المبلغ النهائي", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
-
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "عدد الساعات", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        finalSalary.setFont(new java.awt.Font("Calibri", 1, 13)); // NOI18N
+        finalSalary.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        finalSalary.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "أدخل القيمة ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("دفع\n");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(81, 81, 81)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                .addComponent(finalSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
+                    .addComponent(finalSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
+
+        finalSalary.getAccessibleContext().setAccessibleName("القيمة");
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    connect();
+    String query1 = "SELECT ID_Number from employee_additional_acts where ID_Number = ?";
+    System.out.println("f1"+f);
+        try (PreparedStatement ps1 = con.prepareStatement(query1)) {
+    ps1.setString(1, f);
+    ResultSet rs = ps1.executeQuery();
+            System.out.println("f2"+f);
+    if(rs.next()){
+        String check = rs.getString("ID_Number");
+        String query2="INSERT INTO cash(salary , date_paid, kind , ID_Number) values(?,?,?,?) ";
+        try (PreparedStatement ps = con.prepareStatement(query2)) {
+        ps.setInt(1,Integer.parseInt(finalSalary.getText()));
+        LocalDate date = LocalDate.now();
+        ps.setString(2,date.toString());
+        ps.setString(3,"Additional_Acts");
+        ps.setString(4,f);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Rows affected: " + rowsAffected);
+            } else {
+                System.out.println("No rows affected");
+            }
+            
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    else {
+        System.out.println("No data found for ID: " + f);
+    }   
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField finalSalary;
     private javax.swing.JButton jButton1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
+
+    public void setID(String x) {
+        f=x;
+    }
 }

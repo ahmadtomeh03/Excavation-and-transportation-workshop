@@ -46,7 +46,7 @@ public class chooseStation extends javax.swing.JFrame {
         StationList.setBackground(new java.awt.Color(255, 255, 255));
         StationList.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.orange, null, null));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("قائمة المحطات");
 
@@ -67,6 +67,7 @@ public class chooseStation extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        jTable1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -93,7 +94,7 @@ public class chooseStation extends javax.swing.JFrame {
         );
 
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("اختيار");
 

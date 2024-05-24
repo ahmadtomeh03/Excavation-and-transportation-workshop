@@ -133,9 +133,9 @@
                   <Component id="jButton2" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="jButton3" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jButton5" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace pref="74" max="32767" attributes="0"/>
+                  <EmptySpace pref="87" max="32767" attributes="0"/>
                   <Component id="jLabel9" min="-2" pref="42" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel7" min="-2" pref="42" max="-2" attributes="0"/>
@@ -192,6 +192,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>

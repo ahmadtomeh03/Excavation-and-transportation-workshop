@@ -102,7 +102,7 @@
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="36" style="0"/>
+                  <Font name="Calibri" size="36" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -119,6 +119,9 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="&#x627;&#x644;&#x627;&#x63a;&#x645;&#x627;&#x644; &#x627;&#x644;&#x627;&#x636;&#x627;&#x641;&#x64a;&#x629;"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Calibri" size="14" style="1"/>
+            </Property>
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
@@ -127,6 +130,9 @@
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri" size="14" style="1"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -141,26 +147,30 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="49" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jPanel3" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jTextField4" min="-2" pref="329" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="236" max="-2" attributes="0"/>
+                                  <Component id="addwork" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                                  <Component id="numberofhour" min="-2" pref="329" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                                   <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jTextField7" min="-2" pref="329" max="-2" attributes="0"/>
+                                  <Component id="IDjob" min="-2" pref="329" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" min="-2" pref="305" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jPanel3" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" min="-2" pref="305" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="757" max="32767" attributes="0"/>
+                              <EmptySpace pref="772" max="32767" attributes="0"/>
                               <Component id="jLabel4" min="-2" pref="305" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                           </Group>
@@ -170,13 +180,22 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jTextField4" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="jTextField7" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="numberofhour" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                                      <Component id="IDjob" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                                      <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="addwork" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="jPanel3" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" pref="68" max="-2" attributes="0"/>
@@ -193,32 +212,38 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="jTextField7">
+                <Component class="javax.swing.JTextField" name="IDjob">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder justification="3" position="2" title="&#x637;&#x628;&#x64a;&#x639;&#x629; &#x627;&#x644;&#x639;&#x645;&#x644;">
+                        <TitledBorder justification="3" position="2" title="&#x631;&#x642;&#x645; &#x627;&#x644;&#x639;&#x645;&#x644; &#x627;&#x644;&#x627;&#x636;&#x627;&#x641;&#x64a; ">
                           <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
                         </TitledBorder>
                       </Border>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField7ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IDjobActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField4">
+                <Component class="javax.swing.JTextField" name="numberofhour">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder justification="3" position="2" title="&#x633;&#x639;&#x631; &#x627;&#x644;&#x633;&#x627;&#x639;&#x629;">
+                        <TitledBorder justification="3" position="2" title="&#x639;&#x62f;&#x62f; &#x627;&#x644;&#x633;&#x627;&#x639;&#x627;&#x62a; ">
                           <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
                         </TitledBorder>
                       </Border>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton3">
                   <Properties>
@@ -312,9 +337,9 @@
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="5" rowCount="0">
                                 <Column editable="false" title="&#x627;&#x644;&#x645;&#x628;&#x644;&#x63a; &#x627;&#x644;&#x643;&#x644;&#x64a;" type="java.lang.Object"/>
-                                <Column editable="true" title="&#x637;&#x628;&#x64a;&#x639;&#x629; &#x627;&#x644;&#x639;&#x645;&#x644;" type="java.lang.Object"/>
-                                <Column editable="true" title="&#x633;&#x639;&#x631; &#x627;&#x644;&#x633;&#x627;&#x639;&#x629;" type="java.lang.Object"/>
                                 <Column editable="true" title="&#x639;&#x62f;&#x62f; &#x627;&#x644;&#x633;&#x627;&#x639;&#x627;&#x62a;" type="java.lang.Object"/>
+                                <Column editable="true" title="&#x633;&#x639;&#x631; &#x627;&#x644;&#x633;&#x627;&#x639;&#x629;" type="java.lang.Object"/>
+                                <Column editable="true" title="&#x637;&#x628;&#x64a;&#x639;&#x629; &#x627;&#x644;&#x639;&#x645;&#x644;" type="java.lang.Object"/>
                                 <Column editable="true" title="&#x631;&#x642;&#x645; &#x627;&#x644;&#x639;&#x645;&#x644;" type="java.lang.Object"/>
                               </Table>
                             </Property>
@@ -351,6 +376,9 @@
                               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jTable1AncestorAdded"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -364,12 +392,15 @@
                     <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder justification="3" title="&#x639;&#x62f;&#x62f; &#x627;&#x644;&#x633;&#x627;&#x639;&#x627;&#x62a; &#x627;&#x644;&#x645;&#x62f;&#x641;&#x648;&#x63a;&#x629;\">
+                        <TitledBorder justification="3" title="&#x639;&#x62f;&#x62f; &#x627;&#x644;&#x633;&#x627;&#x639;&#x627;&#x62a; &#x627;&#x644;&#x645;&#x62f;&#x641;&#x648;&#x639;&#x629; ">
                           <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
                         </TitledBorder>
                       </Border>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jLabel3AncestorAdded"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
@@ -385,6 +416,17 @@
                       </Border>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jLabel4AncestorAdded"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="addwork">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&#x627;&#x636;&#x627;&#x641;&#x629; "/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addworkActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -406,21 +448,18 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" min="-2" pref="329" max="-2" attributes="0"/>
-                                  <EmptySpace pref="270" max="32767" attributes="0"/>
-                                  <Component id="jTextField6" min="-2" pref="329" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="94" max="32767" attributes="0"/>
                                   <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="hourPrice" min="-2" pref="329" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Component id="job" min="-2" pref="329" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
@@ -432,12 +471,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jTextField3" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="jTextField6" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="hourPrice" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="job" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                           <Component id="jPanel12" pref="434" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -450,37 +488,49 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="99" red="ff" type="rgb"/>
                     </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Calibri" size="13" style="1"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="&#x627;&#x636;&#x627;&#x641;&#x629;"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField3">
+                <Component class="javax.swing.JTextField" name="hourPrice">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Calibri" size="14" style="1"/>
+                    </Property>
                     <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder justification="3" position="2" title="&#x633;&#x639;&#x631; &#x627;&#x644;&#x633;&#x627;&#x639;&#x629;">
-                          <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
+                          <Font PropertyName="font" name="Calibri" size="15" style="1"/>
                         </TitledBorder>
                       </Border>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField6">
+                <Component class="javax.swing.JTextField" name="job">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Calibri" size="14" style="1"/>
+                    </Property>
                     <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder justification="3" position="2" title="&#x637;&#x628;&#x64a;&#x639;&#x629; &#x627;&#x644;&#x639;&#x645;&#x644;">
-                          <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
+                          <Font PropertyName="font" name="Calibri" size="15" style="1"/>
                         </TitledBorder>
                       </Border>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField6ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jobActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel12">
@@ -533,6 +583,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JTable" name="jTable3">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Calibri" size="14" style="1"/>
+                            </Property>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="3" rowCount="0">
                                 <Column editable="true" title="&#x637;&#x628;&#x64a;&#x639;&#x629; &#x627;&#x644;&#x639;&#x645;&#x644;" type="java.lang.Object"/>
@@ -544,6 +597,9 @@
                               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jTable3AncestorAdded"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -572,6 +628,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JLabel" name="jLabel9">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Calibri" size="14" style="1"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="&#x643;&#x627;&#x641;&#x629; &#x627;&#x644;&#x627;&#x639;&#x645;&#x627;&#x644; &#x627;&#x644;&#x627;&#x636;&#x627;&#x641;&#x64a;&#x629;"/>
                           </Properties>
                         </Component>

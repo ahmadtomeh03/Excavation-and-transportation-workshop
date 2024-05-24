@@ -5,6 +5,18 @@
  */
 package company_project;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author Lenovo
@@ -14,10 +26,21 @@ public class checks extends javax.swing.JFrame {
     /**
      * Creates new form checks
      */
+    private Connection con;
     public checks() {
         initComponents();
     }
-
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +65,7 @@ public class checks extends javax.swing.JFrame {
         checkList.setBackground(new java.awt.Color(255, 255, 255));
         checkList.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.orange, null, null));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("قائمة الشيكات");
 
@@ -63,23 +86,37 @@ public class checks extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "الحالة", "حالة الشيك", "اسم صاحب الشيك", "التاريخ", "قيمة الشيك", "رقم الشيك"
+                "حالة الشيك", "تاريخ الصرف ", "تاريخ التسليم ", "قيمة الشيك", "رقم الشيك", "اسم صاحب الشك "
             }
         ));
         jTable1.setShowHorizontalLines(false);
         jTable1.setShowVerticalLines(false);
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setBackground(new java.awt.Color(255, 153, 0));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jButton2.setText("اختيار");
         jButton2.setToolTipText("");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout checkListLayout = new javax.swing.GroupLayout(checkList);
         checkList.setLayout(checkListLayout);
@@ -133,6 +170,14 @@ public class checks extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+        
+    }//GEN-LAST:event_jTable1AncestorAdded
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

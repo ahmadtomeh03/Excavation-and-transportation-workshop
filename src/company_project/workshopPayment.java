@@ -9,6 +9,16 @@ import Comp.workShopCheck;
 import Comp.workshopCash;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,14 +31,40 @@ public class workshopPayment extends javax.swing.JFrame {
      */
     workShopCheck ch =new workShopCheck();
     workshopCash c = new workshopCash();
+    Integer x;
+        private Connection con;
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     public workshopPayment() {
         initComponents();
         jTabbedPane1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         jLayeredPane1.add(c);
         jLayeredPane1.add(ch);
         c.setVisible(false);
-       ch.setVisible(false);
+        ch.setVisible(false);
+        c.setID(x);
+        ch.setID(x);
+    }
 
+    public workshopPayment(int number) {
+        initComponents();
+        jTabbedPane1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        jLayeredPane1.add(c);
+        jLayeredPane1.add(ch);
+        c.setVisible(false);
+        ch.setVisible(false);
+        x=number;
+        c.setID(x);
+        ch.setID(x);
     }
 
     /**
@@ -64,9 +100,9 @@ public class workshopPayment extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("اضافة دفعات للورشات");
@@ -89,11 +125,12 @@ public class workshopPayment extends javax.swing.JFrame {
         );
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton3.setBackground(new java.awt.Color(255, 153, 0));
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jButton3.setText("دفع نقدي");
         jButton3.setFocusPainted(false);
         jButton3.setFocusable(false);
@@ -118,7 +155,7 @@ public class workshopPayment extends javax.swing.JFrame {
             .addGap(0, 140, Short.MAX_VALUE)
         );
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jButton4.setText("دفع شيك");
         jButton4.setFocusPainted(false);
         jButton4.setFocusable(false);
@@ -191,7 +228,7 @@ public class workshopPayment extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("اضافة دفعة", jPanel3);
@@ -207,6 +244,15 @@ public class workshopPayment extends javax.swing.JFrame {
             }
         ));
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -223,6 +269,15 @@ public class workshopPayment extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable2AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jScrollPane2.setViewportView(jTable2);
@@ -264,7 +319,7 @@ public class workshopPayment extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,20 +369,68 @@ public class workshopPayment extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         c.setVisible(true);
         ch.setVisible(false);
-        jButton2.setBackground(new Color(255,153,51));
+        jButton3.setBackground(new Color(255,153,51));
         jPanel9.setBackground(new Color(255,153,51));
-        jButton3.setBackground(Color.white);
+        jButton4.setBackground(Color.white);
         jPanel8.setBackground(Color.lightGray);
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         c.setVisible(false);
         ch.setVisible(true);
-        jButton3.setBackground(new Color(255,153,51));
+        jButton4.setBackground(new Color(255,153,51));
         jPanel8.setBackground(new Color(255,153,51));
-        jButton2.setBackground(Color.white);
+        jButton3.setBackground(Color.white);
         jPanel9.setBackground(Color.lightGray);
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+   connect();
+    String query = "select ID_Workshops , Amount , Received_Date , Name\n" +
+"from cheque\n" +
+"where kind='Workshops' and ID_Workshops = ?";
+    try (PreparedStatement ps = con.prepareStatement(query)) {
+        ps.setInt(1, x);
+        ResultSet rs = ps.executeQuery();
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        tb.setRowCount(0);
+        while (rs.next()) {
+            String ID     = String.valueOf(rs.getInt("ID_Workshops"));
+            String amount = String.valueOf(rs.getInt("Amount"));
+            String date   = rs.getString("Received_Date");
+            String name  = rs.getString("Name");
+            
+            String emp[] = { name, date, amount,ID};
+            tb.addRow(emp);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }     
+    }//GEN-LAST:event_jTable1AncestorAdded
+
+    private void jTable2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable2AncestorAdded
+         connect();
+    String query = "select ID_Workshops , salary , date_paid\n" +
+"from cash\n" +
+"where kind='Workshops' and ID_Workshops = ? ";
+    try (PreparedStatement ps = con.prepareStatement(query)) {
+        ps.setInt(1, x);
+        ResultSet rs = ps.executeQuery();
+        DefaultTableModel tb = (DefaultTableModel) jTable2.getModel();
+        tb.setRowCount(0);
+        while (rs.next()) {
+            String ID     = String.valueOf(rs.getInt("ID_Workshops"));
+            String amount = String.valueOf(rs.getInt("salary"));
+            String date   = rs.getString("date_paid");
+            
+            
+            String emp[] = { date, amount,ID};
+            tb.addRow(emp);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }  
+    }//GEN-LAST:event_jTable2AncestorAdded
 
     /**
      * @param args the command line arguments
@@ -365,7 +468,6 @@ public class workshopPayment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

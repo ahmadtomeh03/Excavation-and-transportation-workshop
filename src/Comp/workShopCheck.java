@@ -5,6 +5,16 @@
  */
 package Comp;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lenovo
@@ -14,10 +24,22 @@ public class workShopCheck extends javax.swing.JPanel {
     /**
      * Creates new form workShopCheck
      */
+     Integer f;
+    private Connection con;
     public workShopCheck() {
         initComponents();
     }
-
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,23 +51,32 @@ public class workShopCheck extends javax.swing.JPanel {
 
         numberOfCheque = new javax.swing.JTextField();
         amount = new javax.swing.JTextField();
-        date1 = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
         add = new javax.swing.JButton();
+        date1 = new javax.swing.JTextField();
         date2 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        numberOfCheque.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         numberOfCheque.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        numberOfCheque.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم الشيك", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        numberOfCheque.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم الشيك", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
+        amount.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         amount.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        amount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "القيمة\n\n", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        amount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "القيمة\n\n", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
-        date1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        date1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم صاحب الشيك", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        name.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        name.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        name.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم صاحب الشيك", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
 
         add.setBackground(new java.awt.Color(255, 153, 0));
-        add.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        add.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         add.setForeground(new java.awt.Color(255, 255, 255));
         add.setText("اضافة");
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -54,106 +85,109 @@ public class workShopCheck extends javax.swing.JPanel {
             }
         });
 
+        date1.setFont(new java.awt.Font("Calibri", 1, 13)); // NOI18N
+        date1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        date1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "تاريخ الصرف ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+
+        date2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         date2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        date2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "التاريخ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        date2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "تاريخ التسليم ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                        .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(218, 218, 218))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(62, 62, 62)
-                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(423, Short.MAX_VALUE)
                     .addComponent(numberOfCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(62, 62, 62)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                    .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addGap(44, 44, 44))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(26, 26, 26)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(numberOfCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(numberOfCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(261, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-//        System.out.println("f"+f);
-//        System.out.println("s"+s);
-//        connect();
-//        String query1;
-//        if( s == "Mechanism" )
-//        {
-//            query1 = "SELECT ID from mechanism where id=?";
-//            id2="ID_mechanism";
-//        }
-//        else if(s == "Advance_Payment" || s == "Additional_Acts" || s == "Employees")
-//        {
-//            query1 = "SELECT ID_Number from Employees where ID_Number=?";
-//            id2 = "ID_Number";
-//        }
-//        else
-//        {
-//            query1 = "SELECT ID from stations where ID=?";
-//            id2="ID_Station";
-//        }
-//
-//        try (PreparedStatement ps1 = con.prepareStatement(query1)) {
-//            ps1.setString(1,f);
-//            ResultSet rs = ps1.executeQuery();
-//            if(rs.next()){
-//
-//                String query2="INSERT INTO cheque(Doubt_Number,Amount,Received_Date,Data_Spending_The_Money,kind,"+id2+")"+ "values(?,?,?,?,?,?) ";
-//
-//                try (PreparedStatement ps = con.prepareStatement(query2)) {
-//                    ps.setInt(1,Integer.parseInt(numberOfCheque.getText()));
-//                    ps.setInt(2,Integer.parseInt(amount.getText()));
-//                    ps.setString(3,date1.getText());
-//                    ps.setString(4,date_spending.getText());
-//                    ps.setString(5,s);
-//                    ps.setString(6,f);
-//                    int rowsAffected = ps.executeUpdate();
-//                    if (rowsAffected > 0) {
-//                        System.out.println("Rows affected: " + rowsAffected);
-//                    } else {
-//                        System.out.println("No rows affected");
-//                    }
-//
-//                }
-//                catch (SQLException ex) {
-//                    Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//            else {
-//                System.out.println("No data found for ID: " + f);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+System.out.println("f"+f);
+        
+        connect();
+        String query1;
+        query1 = "SELECT ID from workshops where ID=?";
+try (PreparedStatement ps1 = con.prepareStatement(query1))
+{
+    ps1.setInt(1,f);
+    ResultSet rs = ps1.executeQuery();
+    if(rs.next()){ 
+String query2="INSERT INTO cheque(Doubt_Number,Amount,Received_Date,Data_Spending_The_Money,kind,Name,ID_Workshops)"+ "values(?,?,?,?,?,?,?) ";
+        try (PreparedStatement ps = con.prepareStatement(query2)) {
+        ps.setInt(1,Integer.parseInt(numberOfCheque.getText()));
+        ps.setInt(2,Integer.parseInt(amount.getText()));
+        ps.setString(3,date1.getText());
+        ps.setString(4,date2.getText());
+        ps.setString(5,"Workshops");
+        ps.setString(6,name.getText());
+        ps.setInt(7,f);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Rows affected: " + rowsAffected);
+            } else {
+                System.out.println("No rows affected");
+            }
+            
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+    else
+    {
+        System.out.println("id not correct");
+    }
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }        
     }//GEN-LAST:event_addActionPerformed
+
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -161,6 +195,11 @@ public class workShopCheck extends javax.swing.JPanel {
     private javax.swing.JTextField amount;
     private javax.swing.JTextField date1;
     private javax.swing.JTextField date2;
+    private javax.swing.JTextField name;
     private javax.swing.JTextField numberOfCheque;
     // End of variables declaration//GEN-END:variables
+
+    public void setID(Integer x) {
+        f=x;
+    }
 }

@@ -5,6 +5,17 @@
  */
 package Comp;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lenovo
@@ -14,6 +25,19 @@ public class cashForStation extends javax.swing.JPanel {
     /**
      * Creates new form cashForStation
      */
+        private Connection con;
+        int f;
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     public cashForStation() {
         initComponents();
     }
@@ -27,18 +51,24 @@ public class cashForStation extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField5 = new javax.swing.JTextField();
+        value = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "قيمة الرصيد\n", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        value.setFont(new java.awt.Font("Calibri", 1, 13)); // NOI18N
+        value.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        value.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "قيمة الرصيد\n", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("دفع\n");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -46,7 +76,7 @@ public class cashForStation extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 399, Short.MAX_VALUE)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(value, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
@@ -57,16 +87,73 @@ public class cashForStation extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(value, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(88, 88, 88)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(146, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        connect();
+        String query1="select ID,Name from stations where ID = ?";
+        try (PreparedStatement ps1 = con.prepareStatement(query1)) {
+           ps1.setInt(1, f);
+           ResultSet rs = ps1.executeQuery();
+        if(rs.next()){
+        int check1 = rs.getInt("ID");
+        String check2=rs.getString("Name");
+        String query2="INSERT INTO cash(salary,date_paid,kind,ID_Station) values(?,?,?,?) ";
+        try (PreparedStatement ps = con.prepareStatement(query2)) {
+        ps.setInt(1,Integer.parseInt(value.getText()));
+        LocalDate date = LocalDate.now();
+        ps.setString(2,date.toString());
+        ps.setString(3,"Station");
+        ps.setInt(4,check1);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Rows affected: " + rowsAffected);
+            } else {
+                System.out.println("No rows affected");
+            }
+            
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String query3= "update stations\n" +
+                       "set Balance=Balance + ?\n" +
+                       "where ID=?;";
+        try (PreparedStatement ps = con.prepareStatement(query3)) {
+        ps.setInt(1,Integer.parseInt(value.getText()));
+        ps.setInt(2,check1);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Rows affected: " + rowsAffected);
+            } else {
+                System.out.println("No rows affected");
+            }
+            
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    else {
+        System.out.println("No data found for ID: " + f);
+    }   
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField value;
     // End of variables declaration//GEN-END:variables
+
+    public void setID(int x) {
+        f=x;
+    }
 }

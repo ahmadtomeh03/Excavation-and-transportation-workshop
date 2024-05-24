@@ -38,7 +38,7 @@ private Connection con;
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("اضافة محطة جديدة");
@@ -60,23 +60,27 @@ private Connection con;
                 .addGap(28, 28, 28))
         );
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel2.setText("المعلومات الأساسية للمحطة");
 
+        name.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         name.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        name.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم المحطة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        name.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم المحطة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
+        station_owner_name.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         station_owner_name.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        station_owner_name.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم صاحب المحطة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        station_owner_name.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم صاحب المحطة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
+        salary.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         salary.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        salary.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المبلغ المودع", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        salary.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المبلغ المودع", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
+        number.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         number.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        number.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم صاحب المحطة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        number.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم صاحب المحطة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
         add.setBackground(new java.awt.Color(255, 153, 0));
-        add.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        add.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         add.setForeground(new java.awt.Color(255, 255, 255));
         add.setText("اضافة");
         add.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -95,9 +99,9 @@ private Connection con;
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(141, 141, 141)
+                .addGap(45, 45, 45)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(874, Short.MAX_VALUE))
+                .addContainerGap(970, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,9 +125,9 @@ private Connection con;
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(644, Short.MAX_VALUE)
+                .addContainerGap(549, Short.MAX_VALUE)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110))
+                .addGap(205, 205, 205))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(48, 48, 48)

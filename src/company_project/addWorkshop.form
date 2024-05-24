@@ -56,15 +56,15 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextField5" alignment="1" min="-2" pref="329" max="-2" attributes="0"/>
-                              <Component id="jTextField1" alignment="0" min="-2" pref="329" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" alignment="1" min="-2" pref="329" max="-2" attributes="0"/>
+                              <Component id="datebegin" alignment="1" min="-2" pref="329" max="-2" attributes="0"/>
+                              <Component id="name" alignment="0" min="-2" pref="329" max="-2" attributes="0"/>
+                              <Component id="type2" alignment="1" min="-2" pref="329" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="121" pref="121" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextField2" alignment="0" min="-2" pref="329" max="-2" attributes="0"/>
-                              <Component id="jTextField3" alignment="0" min="-2" pref="329" max="-2" attributes="0"/>
-                              <Component id="jComboBox2" min="-2" pref="329" max="-2" attributes="0"/>
+                              <Component id="phone" alignment="0" min="-2" pref="329" max="-2" attributes="0"/>
+                              <Component id="nameWorkshop" alignment="0" min="-2" pref="329" max="-2" attributes="0"/>
+                              <Component id="type" min="-2" pref="329" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -86,20 +86,20 @@
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField1" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                      <Component id="jTextField3" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                      <Component id="name" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                      <Component id="nameWorkshop" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField2" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                      <Component id="jTextField5" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                      <Component id="phone" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                      <Component id="datebegin" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jComboBox1" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
-                      <Component id="jComboBox2" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="type2" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="type" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="68" max="32767" attributes="0"/>
+                  <EmptySpace pref="67" max="32767" attributes="0"/>
                   <Component id="jButton2" min="-2" pref="46" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               </Group>
@@ -143,13 +143,13 @@
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="36" style="0"/>
+                  <Font name="Calibri" size="36" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="&#x627;&#x636;&#x627;&#x641;&#x629; &#x648;&#x631;&#x634;&#x629; &#x62c;&#x62f;&#x64a;&#x62f;&#x629;&#xa;"/>
+                <Property name="text" type="java.lang.String" value="&#x627;&#x636;&#x627;&#x641;&#x629; &#x648;&#x631;&#x634;&#x629; &#x62c;&#x62f;&#x64a;&#x62f;&#x629; "/>
               </Properties>
             </Component>
           </SubComponents>
@@ -157,54 +157,66 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="24" style="0"/>
+              <Font name="Calibri" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x627;&#x644;&#x645;&#x639;&#x644;&#x648;&#x645;&#x627;&#x62a; &#x627;&#x644;&#x623;&#x633;&#x627;&#x633;&#x64a;&#x629; &#x644;&#x644;&#x648;&#x631;&#x634;&#x629;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="nameWorkshop">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Calibri" size="14" style="1"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="3" position="2" title="&#x627;&#x633;&#x645; &#x627;&#x644;&#x648;&#x631;&#x634;&#x629;">
-                  <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
+                  <Font PropertyName="font" name="Calibri" size="15" style="1"/>
                 </TitledBorder>
               </Border>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="name">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Calibri" size="14" style="1"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="3" position="2" title="&#x627;&#x633;&#x645; &#x635;&#x627;&#x62d;&#x628; &#x627;&#x644;&#x648;&#x631;&#x634;&#x629;">
-                  <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
+                  <Font PropertyName="font" name="Calibri" size="15" style="1"/>
                 </TitledBorder>
               </Border>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField5">
+        <Component class="javax.swing.JTextField" name="datebegin">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Calibri" size="14" style="1"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="3" position="2" title="&#x62a;&#x627;&#x631;&#x64a;&#x62e; &#x627;&#x644;&#x628;&#x62f;&#x621;">
-                  <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
+                  <Font PropertyName="font" name="Calibri" size="15" style="1"/>
                 </TitledBorder>
               </Border>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="phone">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Calibri" size="14" style="1"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="3" position="2" title="&#x631;&#x642;&#x645; &#x627;&#x644;&#x647;&#x627;&#x62a;&#x641;">
-                  <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
+                  <Font PropertyName="font" name="Calibri" size="15" style="1"/>
                 </TitledBorder>
               </Border>
             </Property>
@@ -216,7 +228,7 @@
               <Color blue="0" green="99" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="15" style="0"/>
+              <Font name="Calibri" size="15" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -225,12 +237,13 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton2MouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="type2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="15" style="0"/>
+              <Font name="Calibri" size="15" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="5">
@@ -244,7 +257,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="3" title="&#x646;&#x648;&#x639; &#x627;&#x644;&#x62f;&#x641;&#x639;">
-                  <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
+                  <Font PropertyName="font" name="Calibri" size="15" style="1"/>
                 </TitledBorder>
               </Border>
             </Property>
@@ -257,10 +270,10 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox2">
+        <Component class="javax.swing.JComboBox" name="type">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="15" style="0"/>
+              <Font name="Calibri" size="15" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -273,7 +286,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="3" title="&#x646;&#x648;&#x639; &#x627;&#x644;&#x648;&#x631;&#x634;&#x629;">
-                  <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
+                  <Font PropertyName="font" name="Calibri" size="15" style="1"/>
                 </TitledBorder>
               </Border>
             </Property>
@@ -283,7 +296,7 @@
             <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="typeActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

@@ -6,6 +6,16 @@
 package company_project;
 
 import java.awt.ComponentOrientation;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,7 +30,30 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
         initComponents();
          jTabbedPane1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
+    private Connection con;
+    private String IDMec;
+    private int sumSalary2=0;
+    private int sumSalary1=0;
 
+    public RevenuesAndExpenses(String text) {
+        initComponents();
+        jTabbedPane1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        IDMec = text; 
+    }
+    
+    
+    
+    public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,28 +72,28 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
+        all = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
+        sumation = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        expenses = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        total = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("الامور المالية للالية");
@@ -83,13 +116,14 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
         );
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTabbedPane1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel7.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("مصاريف الالية");
 
@@ -110,20 +144,38 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
-        jTable2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTable2.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "الملاحظات", "النوع", "المبلغ", "اسم الالية"
+                "الملاحظات", "التاريخ ", "النوع", "المبلغ", "اسم الالية"
             }
         ));
+        jTable2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable2AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المصاريف الكلية", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        all.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        all.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        all.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المصاريف الكلية", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -137,7 +189,7 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
                         .addGap(25, 25, 25))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 970, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(37, 37, 37))))
         );
@@ -148,8 +200,8 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(all, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -186,13 +238,22 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
 
             },
             new String [] {
-                " المبلغ", "عدد الساعات", "اسم الورشة"
+                " المبلغ المدفوع ", "اسم الورشة"
             }
         ));
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "محموع الايرادات", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        sumation.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        sumation.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "محموع الايرادات", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -206,7 +267,7 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sumation, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 970, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(26, 26, 26))
         );
@@ -218,7 +279,7 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sumation, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -249,17 +310,44 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المصاريف", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        expenses.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        expenses.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        expenses.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المصاريف", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        expenses.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                expensesAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "مجموع الايرادات", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        jLabel8.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jLabel8AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "الايرادات", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        total.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        total.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        total.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "الايرادات", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        total.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                totalAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -267,9 +355,9 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(190, 190, 190)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(expenses, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(117, 117, 117))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -288,8 +376,8 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(expenses, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(88, 88, 88)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(172, Short.MAX_VALUE))
@@ -332,6 +420,151 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTable2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable2AncestorAdded
+        connect();
+        String query1 = "select  Date_Maintenance, salry, kind, name_of_mechanism\n" +
+                        "from Maintenance";
+            DefaultTableModel tb = (DefaultTableModel) jTable2.getModel();
+            tb.setRowCount(0);
+            String note="Empty";
+            try (PreparedStatement ps1 = con.prepareStatement(query1)) {
+            ResultSet rs1 = ps1.executeQuery();
+            
+            while (rs1.next()) {
+                String Date_Maintenance = rs1.getString("Date_Maintenance");
+                int salry = rs1.getInt("salry");
+                sumSalary1 += salry;
+                String kind = rs1.getString("kind");
+                String name_of_mechanism = rs1.getString("name_of_mechanism");
+                
+                String que1[] = {note,Date_Maintenance, ("صيانة")+kind, String.valueOf(salry), name_of_mechanism  };
+                tb.addRow(que1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        /////////////////
+        
+        
+        
+        String query2 = "select  Withdraw_Balance, Withdrawal_Date, note\n" +
+                        "from station_mechanism\n" +
+                        "where ID_Mechanism=?";
+            
+            try (PreparedStatement ps2 = con.prepareStatement(query2)) {
+                ps2.setString(1, IDMec);
+            ResultSet rs2 = ps2.executeQuery();
+            String name="";
+            while (rs2.next()) {
+                
+                int Withdraw_Balance = rs2.getInt("Withdraw_Balance");
+                sumSalary1+= Withdraw_Balance;
+                String Withdrawal_Date = rs2.getString("Withdrawal_Date");
+                note = rs2.getString("note");
+                
+                /////////////////
+                
+                String query3=  "select Name\n" +
+                                "from mechanism\n" +
+                                "where ID=?";
+                    try (PreparedStatement ps3 = con.prepareStatement(query3)) {
+                        ps3.setString(1, IDMec);
+                        ResultSet rs3 = ps3.executeQuery();
+
+                            if(rs3.next()) {
+                                name=rs3.getString("Name");
+                            }
+                        } catch (SQLException ex) {
+                            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        }            
+                
+                //////////////////
+                
+                String que2[] = {note , Withdrawal_Date , "سحب محروقات", String.valueOf(Withdraw_Balance), name  };
+                tb.addRow(que2);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+         all.setText(String.valueOf(sumSalary1));
+            
+    }//GEN-LAST:event_jTable2AncestorAdded
+
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+        connect();
+        String query1=  "SELECT DISTINCT ID_Workshops\n" +
+                        "FROM cash \n" +
+                        "WHERE kind = 'workshops_mechanism' \n" +
+                        "AND ID_Mechanism = ?";
+                try (PreparedStatement ps1 = con.prepareStatement(query1))
+                {
+                    ps1.setString(1, IDMec);
+                    ResultSet rs1 = ps1.executeQuery();
+                    DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+                    tb.setRowCount(0);
+                    while (rs1.next()) 
+                    {
+                     int ID_W=rs1.getInt("ID_Workshops");
+                     
+                     String query2= "SELECT\n" +
+                                    "(SELECT SUM(salary) FROM cash\n" +
+                                    "WHERE ID_Mechanism = ? AND ID_Workshops = ? AND kind = 'workshops_mechanism') AS total_salary,\n" +
+                                    "(SELECT name_Workshops FROM workshops WHERE ID = ? ) AS workshop_name";
+                     
+                     /////////////////////////////
+                     
+                                    try (PreparedStatement ps2 = con.prepareStatement(query2)) {
+                                        ps2.setString(1, IDMec);
+                                        ps2.setInt(2, ID_W);
+                                        ps2.setInt(3, ID_W);
+                                        ResultSet rs2 = ps2.executeQuery();
+
+                                    if(rs2.next()) 
+                                    {
+                                        int sum=rs2.getInt("total_salary");
+                                        sumSalary2+=sum;
+                                        String name = rs2.getString("workshop_name");
+                                        String que1[] = {String.valueOf(sum), name };
+                                        tb.addRow(que1);
+                                    }
+                                    } catch (SQLException ex) {
+                                    Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                     
+                     
+                     ///////////////////////////////
+                     
+                     
+                    }
+                    
+                } 
+                catch (SQLException ex) {
+                    Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                sumation.setText(String.valueOf(sumSalary2));
+    }//GEN-LAST:event_jTable1AncestorAdded
+
+    private void totalAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_totalAncestorAdded
+        total.setText(String.valueOf(sumSalary2));
+    }//GEN-LAST:event_totalAncestorAdded
+
+    private void expensesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_expensesAncestorAdded
+expenses.setText(String.valueOf(sumSalary1));
+    }//GEN-LAST:event_expensesAncestorAdded
+
+    private void jLabel8AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel8AncestorAdded
+        if(sumSalary1<sumSalary2)
+        {
+            jLabel8.setText(String.valueOf(sumSalary2-sumSalary1));
+        }
+        else
+        {
+            jLabel8.setText("0");
+        }
+    }//GEN-LAST:event_jLabel8AncestorAdded
+
     /**
      * @param args the command line arguments
      */
@@ -368,15 +601,13 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel all;
+    private javax.swing.JLabel expenses;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -390,5 +621,7 @@ public class RevenuesAndExpenses extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JLabel sumation;
+    private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }

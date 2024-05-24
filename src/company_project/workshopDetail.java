@@ -8,6 +8,16 @@ package company_project;
 import Comp.Contracting;
 import Comp.Hours;
 import Comp.cups;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 /**
@@ -22,17 +32,48 @@ public class workshopDetail extends javax.swing.JFrame {
     Hours h = new Hours();//payment type hours
     cups c = new cups();// payment type cups
     Contracting cont = new Contracting();// payment type contracting
+    String x1;
+    int x2;
+    private Connection con;
+    public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     public workshopDetail() {
         initComponents();
+        //jLayeredPane1.removeAll(); 
         jLayeredPane1.add(h);
         jLayeredPane1.add(c);
         jLayeredPane1.add(cont);
         h.setVisible(false);
         c.setVisible(false);
         cont.setVisible(false);
+        h.setID(x2);
+        c.setID(x2);
+        cont.setID(x2);
         
-        
-        
+    }
+
+    public workshopDetail(int workshopID, String text) {
+         initComponents();
+        jLayeredPane1.add(h);
+        jLayeredPane1.add(c);
+        jLayeredPane1.add(cont);
+        h.setVisible(false);
+        c.setVisible(false);
+        cont.setVisible(false);
+        x1=text;
+        x2=workshopID;
+        h.setID(x2);
+        c.setID(x2);
+        cont.setID(x2);
     }
 
     /**
@@ -55,6 +96,9 @@ public class workshopDetail extends javax.swing.JFrame {
         paymentType = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        numberMech = new javax.swing.JLabel();
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -72,9 +116,9 @@ public class workshopDetail extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("تفاصيل الورشة");
@@ -96,26 +140,43 @@ public class workshopDetail extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
+        jTable1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "المبلغ المدفوع", "المبلغ", "سعر  الساعة", " عدد الساعات", "اسم الالية"
+                "المبلغ المدفوع", "المبلغ", " عدد الساعات", "اسم الالية", "رقم الالية "
             }
         ));
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("تفاصيل الاليات");
 
-        paymentType.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        paymentType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ساعات ", "مقاولة", "أكواب", " ", " " }));
-        paymentType.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "نوع الدفع", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        paymentType.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        paymentType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ساعات", "مقاولة", "أكواب", "", "" }));
+        paymentType.setSelectedIndex(-1);
+        paymentType.setToolTipText("");
+        paymentType.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "نوع الدفع", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+        paymentType.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         paymentType.setFocusable(false);
         paymentType.setLightWeightPopupEnabled(false);
-        paymentType.setRequestFocusEnabled(false);
         paymentType.setVerifyInputWhenFocusTarget(false);
         paymentType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +187,15 @@ public class workshopDetail extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLayeredPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jLayeredPane1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jLayeredPane1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -138,10 +208,42 @@ public class workshopDetail extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Comp/more (1).png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/company_project/money-bag (1).png"))); // NOI18N
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.N_RESIZE_CURSOR));
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerifyInputWhenFocusTarget(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        numberMech.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        numberMech.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        numberMech.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم الالية ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+        numberMech.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                numberMechAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -160,32 +262,47 @@ public class workshopDetail extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(paymentType, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1064, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)))
-                        .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(paymentType, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                                .addGap(42, 42, 42)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(numberMech, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(41, 41, 41))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(paymentType, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addComponent(paymentType, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(numberMech, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -196,36 +313,104 @@ public class workshopDetail extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void paymentTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentTypeActionPerformed
-        if(paymentType.getSelectedIndex()==0){
-            h.setVisible(true);
-            c.setVisible(false);
-            cont.setVisible(false);
-            
+
+        if(x1.equals(paymentType.getSelectedItem().toString()) && x1.equals("ساعات"))
+        {
+           h.setVisible(true);
+           c.setVisible(false);
+           cont.setVisible(false);
         }
-        
-         if(paymentType.getSelectedIndex()==1){
+        else if(x1.equals("أكواب")&&x1.equals(paymentType.getSelectedItem().toString()))
+        {
             c.setVisible(true);
             h.setVisible(false);
-            cont.setVisible(false);
-            
+            cont.setVisible(false); 
         }
-         
-          if(paymentType.getSelectedIndex()==2){
+        else if(x1.equals(paymentType.getSelectedItem().toString()) && x1.equals("مقاولة"))
+        {
             cont.setVisible(true);
             c.setVisible(false);
             h.setVisible(false);
             
         }
+        
     }//GEN-LAST:event_paymentTypeActionPerformed
+
+    private void jLayeredPane1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLayeredPane1AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLayeredPane1AncestorAdded
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        chooseMachine choose =new chooseMachine(x2);
+        choose.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        workshopandmachine paid = new workshopandmachine(numberMech.getText(),x2);
+        paid.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void numberMechAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_numberMechAncestorAdded
+
+    }//GEN-LAST:event_numberMechAncestorAdded
+
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+        connect();
+        String query1=  "select *\n" +
+                        "from workshops_mechanism\n" +
+                        "where ID_workshops=?";
+        try (PreparedStatement ps1 = con.prepareStatement(query1)) {
+            ps1.setInt(1, x2);
+            ResultSet rs1 = ps1.executeQuery();
+            DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+            tb.setRowCount(0);
+        // ID_Mechanism, ID_workshops, Number_Of_Hour, Sumation
+            while (rs1.next()) {
+            String ID_Mechanism = rs1.getString("ID_Mechanism");
+            int ID_workshops = rs1.getInt("ID_workshops");
+            int Number_Of_Hour = rs1.getInt("Number_Of_Hour");
+            int Sumation=rs1.getInt("Sumation");
+            String nameMechanism = "";
+            String query2="SELECT Name FROM mechanism WHERE ID = ?";
+            
+                try (PreparedStatement ps2 = con.prepareStatement(query2)) {
+                ps2.setString(1,ID_Mechanism);
+                ResultSet rs2 = ps2.executeQuery();
+                if (rs2.next()) 
+                 {
+                nameMechanism = rs2.getString("Name");
+                 }
+                } 
+                catch (SQLException ex)
+                {
+                Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            
+            
+            
+            String mech_work[] = {" ",String.valueOf(Sumation),String.valueOf(Number_Of_Hour),nameMechanism,ID_Mechanism};
+            tb.addRow(mech_work);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_jTable1AncestorAdded
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+         DefaultTableModel model =(DefaultTableModel)jTable1.getModel();
+         int selectedRow = jTable1.getSelectedRow();
+        
+         numberMech.setText(model.getValueAt(selectedRow, 4).toString());
+          
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -263,6 +448,8 @@ public class workshopDetail extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
@@ -272,6 +459,7 @@ public class workshopDetail extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel numberMech;
     private java.awt.Panel panel1;
     private javax.swing.JComboBox<String> paymentType;
     // End of variables declaration//GEN-END:variables

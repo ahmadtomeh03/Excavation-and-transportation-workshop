@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -128,7 +128,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="15" style="0"/>
+                      <Font name="Calibri" size="15" style="1"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="text" type="java.lang.String" value="&#x642;&#x627;&#x626;&#x645;&#x629; &#x627;&#x644;&#x634;&#x64a;&#x643;&#x627;&#x62a;"/>
@@ -146,16 +146,16 @@
                 <Component class="javax.swing.JTable" name="jTable1">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="15" style="0"/>
+                      <Font name="Calibri" size="15" style="1"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="6" rowCount="0">
-                        <Column editable="true" title="&#x627;&#x644;&#x62d;&#x627;&#x644;&#x629;" type="java.lang.Object"/>
                         <Column editable="true" title="&#x62d;&#x627;&#x644;&#x629; &#x627;&#x644;&#x634;&#x64a;&#x643;" type="java.lang.Object"/>
-                        <Column editable="true" title="&#x627;&#x633;&#x645; &#x635;&#x627;&#x62d;&#x628; &#x627;&#x644;&#x634;&#x64a;&#x643;" type="java.lang.Object"/>
-                        <Column editable="true" title="&#x627;&#x644;&#x62a;&#x627;&#x631;&#x64a;&#x62e;" type="java.lang.Object"/>
+                        <Column editable="true" title="&#x62a;&#x627;&#x631;&#x64a;&#x62e; &#x627;&#x644;&#x635;&#x631;&#x641; " type="java.lang.Object"/>
+                        <Column editable="true" title="&#x62a;&#x627;&#x631;&#x64a;&#x62e; &#x627;&#x644;&#x62a;&#x633;&#x644;&#x64a;&#x645; " type="java.lang.Object"/>
                         <Column editable="true" title="&#x642;&#x64a;&#x645;&#x629; &#x627;&#x644;&#x634;&#x64a;&#x643;" type="java.lang.Object"/>
                         <Column editable="true" title="&#x631;&#x642;&#x645; &#x627;&#x644;&#x634;&#x64a;&#x643;" type="java.lang.Object"/>
+                        <Column editable="true" title="&#x627;&#x633;&#x645; &#x635;&#x627;&#x62d;&#x628; &#x627;&#x644;&#x634;&#x643; " type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -198,6 +198,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jTable1AncestorAdded"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -207,11 +210,14 @@
                   <Color blue="0" green="99" red="ff" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="15" style="0"/>
+                  <Font name="Calibri" size="15" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x627;&#x62e;&#x62a;&#x64a;&#x627;&#x631;"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

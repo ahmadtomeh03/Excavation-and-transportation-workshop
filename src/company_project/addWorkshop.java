@@ -5,6 +5,15 @@
  */
 package company_project;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lenovo
@@ -14,10 +23,21 @@ public class addWorkshop extends javax.swing.JFrame {
     /**
      * Creates new form addWorkshop
      */
+     private Connection con;
     public addWorkshop() {
         initComponents();
     }
-
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,13 +51,13 @@ public class addWorkshop extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        nameWorkshop = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
+        datebegin = new javax.swing.JTextField();
+        phone = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        type2 = new javax.swing.JComboBox<>();
+        type = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,10 +66,10 @@ public class addWorkshop extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("اضافة ورشة جديدة\n");
+        jLabel1.setText("اضافة ورشة جديدة ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -68,23 +88,27 @@ public class addWorkshop extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel2.setText("المعلومات الأساسية للورشة");
 
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم الورشة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        nameWorkshop.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        nameWorkshop.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        nameWorkshop.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم الورشة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم صاحب الورشة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        name.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        name.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        name.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم صاحب الورشة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "تاريخ البدء", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        datebegin.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        datebegin.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        datebegin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "تاريخ البدء", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم الهاتف", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        phone.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        phone.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        phone.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم الهاتف", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
         jButton2.setBackground(new java.awt.Color(255, 153, 0));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("اضافة");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -92,25 +116,30 @@ public class addWorkshop extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
-
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ساعات ", "مقاولة", "أكواب", " ", " " }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "نوع الدفع", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
-        jComboBox1.setFocusable(false);
-        jComboBox1.setLightWeightPopupEnabled(false);
-        jComboBox1.setRequestFocusEnabled(false);
-        jComboBox1.setVerifyInputWhenFocusTarget(false);
-
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ورشة", "نقلية", "طمم", " " }));
-        jComboBox2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "نوع الورشة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
-        jComboBox2.setFocusable(false);
-        jComboBox2.setLightWeightPopupEnabled(false);
-        jComboBox2.setRequestFocusEnabled(false);
-        jComboBox2.setVerifyInputWhenFocusTarget(false);
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        type2.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        type2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ساعات ", "مقاولة", "أكواب", " ", " " }));
+        type2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "نوع الدفع", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+        type2.setFocusable(false);
+        type2.setLightWeightPopupEnabled(false);
+        type2.setRequestFocusEnabled(false);
+        type2.setVerifyInputWhenFocusTarget(false);
+
+        type.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ورشة", "نقلية", "طمم", " " }));
+        type.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "نوع الورشة", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+        type.setFocusable(false);
+        type.setLightWeightPopupEnabled(false);
+        type.setRequestFocusEnabled(false);
+        type.setVerifyInputWhenFocusTarget(false);
+        type.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeActionPerformed(evt);
             }
         });
 
@@ -129,14 +158,14 @@ public class addWorkshop extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(209, 209, 209)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(datebegin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(type2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(121, 121, 121)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameWorkshop, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -152,17 +181,17 @@ public class addWorkshop extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(83, 83, 83)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameWorkshop, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(66, 66, 66)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(datebegin, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                    .addComponent(type2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
@@ -182,12 +211,38 @@ public class addWorkshop extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+       connect();
 
+       String query = "INSERT INTO workshops (name_Workshops,phone,Type_Workshops,Name_Owner,Date_Begin,Type_Paid) values(?,?,?,?,?,?)";
+       
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+        ps.setString(1,nameWorkshop.getText());
+        ps.setString(2,phone.getText());
+        String typeValue1 = (String) type.getSelectedItem();
+        String typeValue2 = (String) type2.getSelectedItem();
+        System.out.println("Type_Workshops value: " + typeValue1);
+        ps.setString(3, typeValue1);
+        ps.setString(4,name.getText());
+        ps.setString(5, datebegin.getText());
+        ps.setString(6, typeValue2);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Rows affected: " + rowsAffected);
+            } else {
+                System.out.println("No rows affected");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_typeActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,17 +280,16 @@ public class addWorkshop extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField datebegin;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField nameWorkshop;
+    private javax.swing.JTextField phone;
+    private javax.swing.JComboBox<String> type;
+    private javax.swing.JComboBox<String> type2;
     // End of variables declaration//GEN-END:variables
 }

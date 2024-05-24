@@ -5,6 +5,18 @@
  */
 package company_project;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -14,9 +26,28 @@ public class chooseMachine extends javax.swing.JFrame {
     /**
      * Creates new form chooseMachine
      */
+        private Connection con;
+        int temp;
+
     public chooseMachine() {
         initComponents();
     }
+
+    chooseMachine(int x2) {
+                initComponents();
+        temp=x2;
+    }
+    public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,8 +64,10 @@ public class chooseMachine extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        number = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        price = new javax.swing.JTextField();
+        IDmachine = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,7 +76,9 @@ public class chooseMachine extends javax.swing.JFrame {
         MachineList.setBackground(new java.awt.Color(255, 255, 255));
         MachineList.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.orange, null, null));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jPanel4.setBackground(new java.awt.Color(255, 153, 0));
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("قائمة الاليات");
 
@@ -64,17 +99,31 @@ public class chooseMachine extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "الحالة", "المبلغ المتبقي", "المبلغ المدفوع شيك", "المبلغ المدفوع كاش", "سعر الساعة", "سعر الالية", "اسم الالية", "رقم الالية"
+                "الحالة", "سعر الساعة ", "اسم الالية", "رقم الالية"
             }
         ));
         jTable1.setShowHorizontalLines(false);
         jTable1.setShowVerticalLines(false);
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout MachineListLayout = new javax.swing.GroupLayout(MachineList);
@@ -89,21 +138,21 @@ public class chooseMachine extends javax.swing.JFrame {
             .addGroup(MachineListLayout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "عدد الساعات", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        number.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        number.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        number.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "عدد الساعات", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+        number.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                numberActionPerformed(evt);
             }
         });
 
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         jButton1.setText("اضافة");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,16 +160,41 @@ public class chooseMachine extends javax.swing.JFrame {
             }
         });
 
+        price.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        price.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        price.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "سعر الساعة ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+        price.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                priceActionPerformed(evt);
+            }
+        });
+
+        IDmachine.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        IDmachine.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        IDmachine.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم الالية ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
+        IDmachine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IDmachineActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 366, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(number, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(IDmachine, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(304, 304, 304)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -129,20 +203,20 @@ public class chooseMachine extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(596, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(420, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IDmachine, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(number, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(MachineList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(82, Short.MAX_VALUE)))
+                    .addComponent(MachineList, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(268, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -159,13 +233,71 @@ public class chooseMachine extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void numberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_numberActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        connect();
+        String query ="Insert into workshops_mechanism\n" +
+        "values (?,?,?,?)";
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+        ps.setString(1,IDmachine.getText());
+        ps.setInt(2,temp);
+        ps.setInt(3,Integer.parseInt(number.getText()));
+        ps.setInt(4,Integer.parseInt(number.getText())*Integer.parseInt(price.getText()));
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Rows affected: " + rowsAffected);
+            } else {
+                System.out.println("No rows affected");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_priceActionPerformed
+
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+        connect();
+        String query ="select *from mechanism";
+         try (PreparedStatement ps = con.prepareStatement(query)) {
+        ResultSet rs = ps.executeQuery();
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        tb.setRowCount(0);
+        while (rs.next()) {
+            String ID =rs.getString("ID");
+            String name = rs.getString("Name");
+            String price = String.valueOf(rs.getInt("price"));
+            String Hour = String.valueOf(rs.getInt("Hour_Price"));
+            String sold = String.valueOf(rs.getBoolean("sold"));
+            String station[] = {sold , Hour , name ,ID };
+            
+            
+            tb.addRow(station);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_jTable1AncestorAdded
+
+    private void IDmachineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDmachineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IDmachineActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model =(DefaultTableModel)jTable1.getModel();
+        int selectedRow = jTable1.getSelectedRow();
+        
+        price.setText(model.getValueAt(selectedRow, 1).toString());
+        IDmachine.setText(model.getValueAt(selectedRow, 3).toString());
+        
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -203,6 +335,7 @@ public class chooseMachine extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField IDmachine;
     private javax.swing.JPanel MachineList;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel4;
@@ -210,6 +343,7 @@ public class chooseMachine extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField number;
+    private javax.swing.JTextField price;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,11 +32,12 @@ private Connection con;
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        amount.setFont(new java.awt.Font("Calibri", 1, 13)); // NOI18N
         amount.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        amount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "القيمة\n\n", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        amount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "القيمة\n\n", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
         add.setBackground(new java.awt.Color(255, 153, 0));
-        add.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        add.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         add.setForeground(new java.awt.Color(255, 255, 255));
         add.setText("دفع\n");
         add.addActionListener(new java.awt.event.ActionListener() {

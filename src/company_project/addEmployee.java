@@ -36,9 +36,10 @@ private  Connection con;
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("اضافة موظف جديد");
@@ -60,23 +61,27 @@ private  Connection con;
                 .addGap(28, 28, 28))
         );
 
+        card.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         card.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        card.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم الهوية", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        card.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم الهوية", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
+        phone.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         phone.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        phone.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم الهاتف", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        phone.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "رقم الهاتف", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
+        name.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         name.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        name.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم الموظف", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        name.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "اسم الموظف", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
+        salary.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         salary.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        salary.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "الراتب", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        salary.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "الراتب", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel2.setText("المعلومات الأساسية للموظف");
 
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("اضافة");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -95,7 +100,7 @@ private  Connection con;
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 442, Short.MAX_VALUE)
+                .addGap(0, 490, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(399, 399, 399))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -132,7 +137,7 @@ private  Connection con;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
@@ -152,7 +157,8 @@ private  Connection con;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        
+        addEmployee newEmp =new addEmployee();
+        newEmp.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

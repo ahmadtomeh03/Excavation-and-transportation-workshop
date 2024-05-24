@@ -5,6 +5,18 @@
  */
 package company_project;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author Lenovo
@@ -14,10 +26,28 @@ public class chooseAdditional extends javax.swing.JFrame {
     /**
      * Creates new form chooseAdditional
      */
+     
+     private Connection con;
+     String x;
     public chooseAdditional() {
         initComponents();
     }
 
+    chooseAdditional(String text) {
+        initComponents();
+        x = text;
+    }
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +72,7 @@ public class chooseAdditional extends javax.swing.JFrame {
         workList.setBackground(new java.awt.Color(255, 255, 255));
         workList.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.orange, null, null));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("قائمة الاعمال الاضافية");
 
@@ -63,6 +93,7 @@ public class chooseAdditional extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        jTable1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -71,6 +102,15 @@ public class chooseAdditional extends javax.swing.JFrame {
                 "طبيعة العمل", "سعر الساعة", "رقم العمل الاضافي"
             }
         ));
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -92,9 +132,14 @@ public class chooseAdditional extends javax.swing.JFrame {
         );
 
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("اختيار");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -130,6 +175,38 @@ public class chooseAdditional extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+         connect();
+    String query = "select * from additional_acts";
+    try (PreparedStatement ps = con.prepareStatement(query)) {
+        ResultSet rs = ps.executeQuery();
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        tb.setRowCount(0);
+        while (rs.next()) {
+            String ID = String.valueOf(rs.getInt("ID"));
+            String hour = String.valueOf(rs.getInt("Hour_Price"));
+            String job = rs.getString("Job_Description");
+            
+            String emp[] = {job , hour,  ID};
+            tb.addRow(emp);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_jTable1AncestorAdded
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       int index = jTable1.getSelectedRow();
+       TableModel model = jTable1.getModel();
+       additionalWork add = new additionalWork(x);
+       String desc = model.getValueAt(index,2).toString();
+       String price= model.getValueAt(index,1).toString();
+        add.setVisible(true);
+        add.pack();
+        add.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        add.IDjob.setText(desc);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,17 @@
  */
 package Comp;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lenovo
@@ -14,10 +25,22 @@ public class workshopCash extends javax.swing.JPanel {
     /**
      * Creates new form workshopCash
      */
+    Integer f;
+    private Connection con;
     public workshopCash() {
         initComponents();
     }
-
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,19 +51,21 @@ public class workshopCash extends javax.swing.JPanel {
     private void initComponents() {
 
         amount = new javax.swing.JTextField();
-        numberOfCheque = new javax.swing.JTextField();
+        date = new javax.swing.JTextField();
         add = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        amount.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         amount.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        amount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "القيمة\n\n", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        amount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "القيمة\n\n", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
-        numberOfCheque.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        numberOfCheque.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "التاريخ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        date.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        date.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        date.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "التاريخ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
         add.setBackground(new java.awt.Color(255, 153, 0));
-        add.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        add.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         add.setForeground(new java.awt.Color(255, 255, 255));
         add.setText("اضافة");
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -59,7 +84,7 @@ public class workshopCash extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(69, 69, 69)
-                .addComponent(numberOfCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
@@ -69,7 +94,7 @@ public class workshopCash extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numberOfCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -78,64 +103,49 @@ public class workshopCash extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        //        System.out.println("f"+f);
-        //        System.out.println("s"+s);
-        //        connect();
-        //        String query1;
-        //        if( s == "Mechanism" )
-        //        {
-            //            query1 = "SELECT ID from mechanism where id=?";
-            //            id2="ID_mechanism";
-            //        }
-        //        else if(s == "Advance_Payment" || s == "Additional_Acts" || s == "Employees")
-        //        {
-            //            query1 = "SELECT ID_Number from Employees where ID_Number=?";
-            //            id2 = "ID_Number";
-            //        }
-        //        else
-        //        {
-            //            query1 = "SELECT ID from stations where ID=?";
-            //            id2="ID_Station";
-            //        }
-        //
-        //        try (PreparedStatement ps1 = con.prepareStatement(query1)) {
-            //            ps1.setString(1,f);
-            //            ResultSet rs = ps1.executeQuery();
-            //            if(rs.next()){
-                //
-                //                String query2="INSERT INTO cheque(Doubt_Number,Amount,Received_Date,Data_Spending_The_Money,kind,"+id2+")"+ "values(?,?,?,?,?,?) ";
-                //
-                //                try (PreparedStatement ps = con.prepareStatement(query2)) {
-                    //                    ps.setInt(1,Integer.parseInt(numberOfCheque.getText()));
-                    //                    ps.setInt(2,Integer.parseInt(amount.getText()));
-                    //                    ps.setString(3,date1.getText());
-                    //                    ps.setString(4,date_spending.getText());
-                    //                    ps.setString(5,s);
-                    //                    ps.setString(6,f);
-                    //                    int rowsAffected = ps.executeUpdate();
-                    //                    if (rowsAffected > 0) {
-                        //                        System.out.println("Rows affected: " + rowsAffected);
-                        //                    } else {
-                        //                        System.out.println("No rows affected");
-                        //                    }
-                    //
-                    //                }
-                //                catch (SQLException ex) {
-                    //                    Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
-                    //                }
-                //            }
-            //            else {
-                //                System.out.println("No data found for ID: " + f);
-                //            }
-            //        } catch (SQLException ex) {
-            //            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
-            //        }
+        connect();
+        String query1 = "SELECT ID from workshops where ID=?";
+        System.out.println("f1"+f);
+        try (PreparedStatement ps1 = con.prepareStatement(query1)) {
+    ps1.setInt(1, f);
+    ResultSet rs = ps1.executeQuery();
+    System.out.println("f2"+f);
+    if(rs.next()){
+        String check = rs.getString("ID");
+        String query2="INSERT INTO cash(salary,date_paid,kind,ID_Workshops) values(?,?,?,?) ";
+        try (PreparedStatement ps = con.prepareStatement(query2)) {
+        ps.setInt(1,Integer.parseInt(amount.getText()));
+        ps.setString(2,date.getText());
+        ps.setString(3,"Workshops");
+        ps.setInt(4,f);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Rows affected: " + rowsAffected);
+            } else {
+                System.out.println("No rows affected");
+            }
+            
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    else {
+        System.out.println("No data found for ID: " + f);
+    }   
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_addActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
     private javax.swing.JTextField amount;
-    private javax.swing.JTextField numberOfCheque;
+    private javax.swing.JTextField date;
     // End of variables declaration//GEN-END:variables
+
+    public void setID(Integer x) {
+        f=x;
+    }
 }

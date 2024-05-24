@@ -37,7 +37,7 @@ public  Connection connect() {
         jLabel1 = new javax.swing.JLabel();
         amount = new javax.swing.JTextField();
         note = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        date = new javax.swing.JTextField();
         add = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,9 +45,9 @@ public  Connection connect() {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("اضافة مصاريف تشغيلية");
@@ -69,19 +69,20 @@ public  Connection connect() {
                 .addGap(28, 28, 28))
         );
 
+        amount.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         amount.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        amount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المبلغ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        amount.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المبلغ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
-        note.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        note.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         note.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        note.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "الملاحظات", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        note.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "الملاحظات", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "التاريخ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        date.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        date.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        date.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "التاريخ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 15))); // NOI18N
 
         add.setBackground(new java.awt.Color(255, 153, 0));
-        add.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        add.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         add.setForeground(new java.awt.Color(255, 255, 255));
         add.setText("اضافة");
         add.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,7 +111,7 @@ public  Connection connect() {
                         .addGap(137, 137, 137)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(100, 100, 100))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(120, 120, 120)
@@ -127,7 +128,7 @@ public  Connection connect() {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(64, 64, 64)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(note, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,11 +155,11 @@ public  Connection connect() {
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
        connect();
-       String query="INSERT INTO operating_expenses(Note,amount) values (?,?)";
+       String query="INSERT INTO operating_expenses(Note,amount,dates) values (?,?,?)";
          try (PreparedStatement ps = con.prepareStatement(query)) {
         ps.setString(1,note.getText());
         ps.setInt(2,Integer.parseInt(amount.getText()));
-        
+        ps.setString(3, date.getText());
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("Rows affected: " + rowsAffected);
@@ -182,10 +183,10 @@ public  Connection connect() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
     private javax.swing.JTextField amount;
+    private javax.swing.JTextField date;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField note;
     // End of variables declaration//GEN-END:variables
 }

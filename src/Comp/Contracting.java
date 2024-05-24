@@ -5,6 +5,17 @@
  */
 package Comp;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -14,10 +25,23 @@ public class Contracting extends javax.swing.JPanel {
     /**
      * Creates new form Contracting
      */
+    int f;
+                private Connection con;
+
     public Contracting() {
         initComponents();
     }
-
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
+    }
+    return null;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,7 +51,7 @@ public class Contracting extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField2 = new javax.swing.JTextField();
+        price = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -35,14 +59,15 @@ public class Contracting extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المبلغ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
+        price.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        price.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        price.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "المبلغ", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 1, 14))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("التفاصيل المالية");
 
+        jTable2.setFont(new java.awt.Font("Calibri", 1, 13)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -51,12 +76,27 @@ public class Contracting extends javax.swing.JPanel {
                 "المبلغ المتبقي", "المبلغ المدفوع شيك", "الملبغ المدفوع كاش", "المبلغ الكلي"
             }
         ));
+        jTable2.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        jTable2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable2AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("حساب");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -70,7 +110,7 @@ public class Contracting extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(312, 312, 312))
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1048, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -79,7 +119,7 @@ public class Contracting extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -94,12 +134,79 @@ public class Contracting extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         connect();
+         String query1 = "SELECT ID from Workshops where ID=?";
+          System.out.println("f1"+f);
+        try (PreparedStatement ps1 = con.prepareStatement(query1)) {
+    ps1.setInt(1, f);
+    ResultSet rs = ps1.executeQuery();
+            System.out.println("f2"+f);
+    if(rs.next()){
+        String check = rs.getString("ID");
+        String query2="insert into muqawila(price , ID_workshops )\n" +"values (?,?)";
+        try (PreparedStatement ps = con.prepareStatement(query2)) {
+        ps.setInt(1,Integer.parseInt(price.getText()));
+        ps.setInt(2,f);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Rows affected: " + rowsAffected);
+            } else {
+                System.out.println("No rows affected");
+            }
+            
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    else {
+        System.out.println("No data found for ID: " + f);
+    }   
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable2AncestorAdded
+         connect();
+      String query="SELECT\n" +
+"mu.price,\n" +
+"    (SELECT c.salary FROM cash c WHERE c.ID_Workshops = mu.ID_Workshops) AS cash_salary,\n" +
+"    (SELECT ch.Amount FROM cheque ch WHERE ch.ID_Workshops = mu.ID_Workshops) AS cheque_amount\n" +
+"FROM \n" +
+"    muqawila mu\n" +
+"WHERE \n" +
+"    mu.ID_Workshops = ?";
+       try (PreparedStatement ps = con.prepareStatement(query)) {
+        ps.setInt(1, f);
+        ResultSet rs = ps.executeQuery();
+        DefaultTableModel tb = (DefaultTableModel)jTable2.getModel();
+        tb.setRowCount(0);
+        while (rs.next()) {
+            
+            String price   = String.valueOf(rs.getInt("mu.Price"));
+            
+            String cash  = String.valueOf(rs.getInt("cash_salary"));
+            String cheque   = String.valueOf(rs.getInt("cheque_amount"));
+            String emp[]  = { String.valueOf(rs.getInt("mu.Price") -(rs.getInt("cheque_amount")+rs.getInt("cash_salary"))), cheque , cash, price};
+            tb.addRow(emp);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_jTable2AncestorAdded
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField price;
     // End of variables declaration//GEN-END:variables
+
+    public void setID(int x2) {
+        f=x2;
+    }
 }

@@ -20,12 +20,28 @@ public class addMoney extends javax.swing.JFrame {
      */
     cashForStation c = new cashForStation();
     check ch =new check();
+    private int x;
     public addMoney() {
         initComponents();
         jLayeredPane1.add(c);
         jLayeredPane1.add(ch);
         c.setVisible(false);
         ch.setVisible(false);
+        c.setID(x);
+        ch.setID(x);
+        ch.setKind("Station");
+    }
+
+    public addMoney(int text) {
+         initComponents();
+        jLayeredPane1.add(c);
+        jLayeredPane1.add(ch);
+        c.setVisible(false);
+        ch.setVisible(false);
+        x=text;
+        c.setID(x);
+        ch.setID(x);
+        ch.setKind("Station");
     }
 
     /**
@@ -56,7 +72,7 @@ public class addMoney extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("اضافة رصيد للمحطة");
@@ -82,7 +98,7 @@ public class addMoney extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jButton2.setBackground(new java.awt.Color(255, 153, 0));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jButton2.setText("دفع نقدي");
         jButton2.setFocusPainted(false);
         jButton2.setFocusable(false);
@@ -121,7 +137,7 @@ public class addMoney extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jButton1.setText("دفع شيك");
         jButton1.setFocusPainted(false);
         jButton1.setFocusable(false);
@@ -141,7 +157,7 @@ public class addMoney extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -163,11 +179,15 @@ public class addMoney extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -175,7 +195,7 @@ public class addMoney extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -204,11 +224,12 @@ public class addMoney extends javax.swing.JFrame {
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(109, 109, 109)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(149, 149, 149))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -219,7 +240,9 @@ public class addMoney extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

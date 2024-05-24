@@ -90,9 +90,9 @@ public class loans extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("السلف");
@@ -115,22 +115,23 @@ public class loans extends javax.swing.JFrame {
         );
 
         jTabbedPane2.setBackground(new java.awt.Color(255, 255, 255));
-        jTabbedPane2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTabbedPane2.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jPanel3AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
         });
 
+        jTable1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -140,12 +141,12 @@ public class loans extends javax.swing.JFrame {
             }
         ));
         jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jTable1AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -177,7 +178,7 @@ public class loans extends javax.swing.JFrame {
         jPanel5.setPreferredSize(new java.awt.Dimension(171, 144));
 
         jButton2.setBackground(new java.awt.Color(255, 153, 0));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jButton2.setText("دفع نقدي");
         jButton2.setFocusPainted(false);
         jButton2.setFocusable(false);
@@ -193,14 +194,14 @@ public class loans extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
         );
 
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 60, -1, -1));
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 60, -1, -1));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -213,9 +214,9 @@ public class loans extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 290, -1, 140));
+        jPanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 290, -1, 140));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jButton3.setText("دفع شيك");
         jButton3.setFocusPainted(false);
         jButton3.setFocusable(false);
@@ -227,7 +228,7 @@ public class loans extends javax.swing.JFrame {
                 jButton3MouseClicked(evt);
             }
         });
-        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(788, 290, 170, 140));
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 290, 170, 140));
 
         jPanel9.setBackground(new java.awt.Color(255, 153, 0));
 
@@ -242,7 +243,7 @@ public class loans extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel4.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 60, -1, 140));
+        jPanel4.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 60, -1, 140));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -252,18 +253,19 @@ public class loans extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLayeredPane1))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jLayeredPane1)
+                .addContainerGap()
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 720, 380));
+        jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 850, 490));
 
         jTabbedPane2.addTab("اعطاء سلفة", jPanel4);
 
@@ -272,14 +274,13 @@ public class loans extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 999, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(121, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jTabbedPane2)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,29 +340,25 @@ public  Connection connect() {
 }
     private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
         connect();
-        String query ="SELECT salary,date_paid,kind from cash where ID_Number = ? and kind = ?";
         DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
         tb.setRowCount(0);
+        String query ="SELECT salary,date_paid,kind from cash where ID_Number = ? and kind = ?";
+        
         try (PreparedStatement ps1 = con.prepareStatement(query)){
              ps1.setString(1,x);
              ps1.setString(2,"Advance_Payment");
              ResultSet rs = ps1.executeQuery();
-        if(rs.next()){
-            while(rs.next())
+        
+        while(rs.next())
         {
          String amount= rs.getString("salary");
          String date = rs.getString("date_paid");
          String type = "Cash";
-         
          String emp[]={date,amount,type};
-        
-         tb.addRow(emp);
-         
+         tb.addRow(emp); 
         }
-    }
-    else {
-        System.out.println("No data found for ID: " + x);
-    }   
+    
+       
         } catch (SQLException ex) {
             Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -370,7 +367,7 @@ public  Connection connect() {
              ps1.setString(1,x);
              ps1.setString(2,"Advance_Payment");
              ResultSet rs = ps1.executeQuery();
-        if(rs.next()){
+        
             while(rs.next())
         {
          String amount= rs.getString("amount");
@@ -381,11 +378,7 @@ public  Connection connect() {
         
          tb.addRow(emp);
          
-        }
-    }
-    else {
-        System.out.println("No data found for ID: " + x);
-    }   
+        }   
         } catch (SQLException ex) {
             Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

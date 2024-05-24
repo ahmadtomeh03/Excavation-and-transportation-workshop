@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -72,8 +72,8 @@
               <Color blue="33" green="99" red="ff" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder/>
+              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                <BevelBorder/>
               </Border>
             </Property>
           </Properties>
@@ -102,7 +102,7 @@
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="36" style="0"/>
+                  <Font name="Calibri" size="36" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -119,7 +119,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="15" style="0"/>
+              <Font name="Calibri" size="15" style="1"/>
             </Property>
           </Properties>
 
@@ -151,7 +151,7 @@
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jLabel5" min="-2" pref="249" max="-2" attributes="0"/>
+                                      <Component id="all" min="-2" pref="249" max="-2" attributes="0"/>
                                       <Component id="jScrollPane2" min="-2" pref="970" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -167,8 +167,8 @@
                           <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="370" max="-2" attributes="0"/>
-                          <EmptySpace pref="32" max="32767" attributes="0"/>
-                          <Component id="jLabel5" min="-2" pref="51" max="-2" attributes="0"/>
+                          <EmptySpace pref="28" max="32767" attributes="0"/>
+                          <Component id="all" min="-2" pref="51" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -179,6 +179,11 @@
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="99" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                        <BevelBorder/>
+                      </Border>
                     </Property>
                   </Properties>
 
@@ -206,7 +211,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel4">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Tahoma" size="24" style="0"/>
+                          <Font name="Calibri" size="24" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -226,11 +231,12 @@
                     <Component class="javax.swing.JTable" name="jTable2">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Tahoma" size="15" style="0"/>
+                          <Font name="Calibri" size="15" style="1"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="0">
+                          <Table columnCount="5" rowCount="10">
                             <Column editable="true" title="&#x627;&#x644;&#x645;&#x644;&#x627;&#x62d;&#x638;&#x627;&#x62a;" type="java.lang.Object"/>
+                            <Column editable="true" title="&#x627;&#x644;&#x62a;&#x627;&#x631;&#x64a;&#x62e; " type="java.lang.Object"/>
                             <Column editable="true" title="&#x627;&#x644;&#x646;&#x648;&#x639;" type="java.lang.Object"/>
                             <Column editable="true" title="&#x627;&#x644;&#x645;&#x628;&#x644;&#x63a;" type="java.lang.Object"/>
                             <Column editable="true" title="&#x627;&#x633;&#x645; &#x627;&#x644;&#x627;&#x644;&#x64a;&#x629;" type="java.lang.Object"/>
@@ -258,25 +264,33 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
                           </TableColumnModel>
                         </Property>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jTable2AncestorAdded"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="jLabel5">
+                <Component class="javax.swing.JLabel" name="all">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="15" style="0"/>
+                      <Font name="Calibri" size="15" style="1"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder justification="3" position="2" title="&#x627;&#x644;&#x645;&#x635;&#x627;&#x631;&#x64a;&#x641; &#x627;&#x644;&#x643;&#x644;&#x64a;&#x629;">
-                          <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
+                          <Font PropertyName="font" name="Calibri" size="15" style="1"/>
                         </TitledBorder>
                       </Border>
                     </Property>
@@ -310,7 +324,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jLabel3" min="-2" pref="250" max="-2" attributes="0"/>
+                                      <Component id="sumation" min="-2" pref="250" max="-2" attributes="0"/>
                                       <Component id="jScrollPane1" min="-2" pref="970" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -327,7 +341,7 @@
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="370" max="-2" attributes="0"/>
                           <EmptySpace pref="34" max="32767" attributes="0"/>
-                          <Component id="jLabel3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="sumation" min="-2" pref="50" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -388,19 +402,13 @@
                           <Font name="Tahoma" size="15" style="0"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="3" rowCount="0">
-                            <Column editable="true" title=" &#x627;&#x644;&#x645;&#x628;&#x644;&#x63a;" type="java.lang.Object"/>
-                            <Column editable="true" title="&#x639;&#x62f;&#x62f; &#x627;&#x644;&#x633;&#x627;&#x639;&#x627;&#x62a;" type="java.lang.Object"/>
+                          <Table columnCount="2" rowCount="0">
+                            <Column editable="true" title=" &#x627;&#x644;&#x645;&#x628;&#x644;&#x63a; &#x627;&#x644;&#x645;&#x62f;&#x641;&#x648;&#x639; " type="java.lang.Object"/>
                             <Column editable="true" title="&#x627;&#x633;&#x645; &#x627;&#x644;&#x648;&#x631;&#x634;&#x629;" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
@@ -417,10 +425,13 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jTable1AncestorAdded"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="jLabel3">
+                <Component class="javax.swing.JLabel" name="sumation">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="15" style="0"/>
@@ -455,9 +466,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
-                          <Component id="jLabel7" min="-2" pref="272" max="-2" attributes="0"/>
+                          <Component id="expenses" min="-2" pref="272" max="-2" attributes="0"/>
                           <EmptySpace pref="205" max="32767" attributes="0"/>
-                          <Component id="jLabel9" min="-2" pref="272" max="-2" attributes="0"/>
+                          <Component id="total" min="-2" pref="272" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -482,8 +493,8 @@
                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel7" min="-2" pref="57" max="-2" attributes="0"/>
-                              <Component id="jLabel9" min="-2" pref="57" max="-2" attributes="0"/>
+                              <Component id="expenses" min="-2" pref="57" max="-2" attributes="0"/>
+                              <Component id="total" min="-2" pref="57" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" pref="57" max="-2" attributes="0"/>
@@ -534,7 +545,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="jLabel7">
+                <Component class="javax.swing.JLabel" name="expenses">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="15" style="0"/>
@@ -548,6 +559,9 @@
                       </Border>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="expensesAncestorAdded"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
@@ -563,8 +577,11 @@
                       </Border>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jLabel8AncestorAdded"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel9">
+                <Component class="javax.swing.JLabel" name="total">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="15" style="0"/>
@@ -578,6 +595,9 @@
                       </Border>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="totalAncestorAdded"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
