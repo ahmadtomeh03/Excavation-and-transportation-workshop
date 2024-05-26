@@ -287,7 +287,7 @@ public class machine extends javax.swing.JPanel {
 
             },
             new String [] {
-                "الحالة", "المبلغ المتبقي", "المبلغ المدفوع شيك", "المبلغ المدفوع كاش", "سعر الساعة", "سعر الالية", "اسم الالية", "رقم الالية"
+                "المبلغ المتبقي", "المبلغ المدفوع شيك", "المبلغ المدفوع كاش", "سعر الساعة", "سعر الالية", "اسم الالية", "رقم الالية"
             }
         ));
         jTable1.setSelectionBackground(new java.awt.Color(102, 102, 102));
@@ -630,8 +630,8 @@ public class machine extends javax.swing.JPanel {
         DefaultTableModel model =(DefaultTableModel)jTable1.getModel();
         int selectedRow = jTable1.getSelectedRow();
         
-        name_of_machine.setText(model.getValueAt(selectedRow, 6).toString());
-        number_of_machine.setText(model.getValueAt(selectedRow, 7).toString());
+        name_of_machine.setText(model.getValueAt(selectedRow, 5).toString());
+        number_of_machine.setText(model.getValueAt(selectedRow, 6).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -700,7 +700,7 @@ public class machine extends javax.swing.JPanel {
             Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
             
-            String mech[] = { sold , String.valueOf(price - sa1 - sa2), String.valueOf(sa2), String.valueOf(sa1) ,Hour_Price, String.valueOf(price), name,ID };
+            String mech[] = {  String.valueOf(price - sa1 - sa2), String.valueOf(sa2), String.valueOf(sa1) ,Hour_Price, String.valueOf(price), name,ID };
             tb.addRow(mech);
         }
     } catch (SQLException ex) {
