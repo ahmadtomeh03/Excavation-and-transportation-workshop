@@ -19,8 +19,9 @@ On this page, you can discover workshops you're interested in working in. <p>To 
 
 # Mechanism
 
-On this page, you can see which mechanisms are included in your company. To view details about a mechanism, simply click on its name and select the information you want to know.
-
+On this page, you can see the mechanisms included in your company, along with the status of completed and incomplete payments, and whether the mechanism has been sold. 
+<p>To view details about a mechanism, simply click on its name and select the information you want to know.<p/>
+ 
 ![mechanism](https://github.com/ahmadtomeh03/Excavation-and-transportation-workshop/assets/152665264/ed4493da-1add-48ab-9f80-f14aed53f898)
 
 # 
