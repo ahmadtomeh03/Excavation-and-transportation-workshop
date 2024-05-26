@@ -8,4 +8,10 @@ On this page, you can add new employees to the company and view their complete d
 
 On this page, you can add stations from which the machines can withdraw credit. To add more credit to a station, simply click on the row with the name of the desired station and add the credit.
 
+![stations](https://github.com/ahmadtomeh03/Excavation-and-transportation-workshop/assets/152665264/d9db978f-7910-4fe9-9d0a-029462081323)
+
+# Workshops
+
+On this page, you can add workshops you're interested in working with . To view details about a workshop, simply click on its name and choose the information you'd like to know.
+
 
