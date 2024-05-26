@@ -14,4 +14,5 @@ On this page, you can add stations from which the machines can withdraw credit. 
 
 On this page, you can add workshops you're interested in working with . To view details about a workshop, simply click on its name and choose the information you'd like to know.
 
+![workshops](https://github.com/ahmadtomeh03/Excavation-and-transportation-workshop/assets/152665264/d6a52135-21c0-4d24-9afb-6a7fab7ad8d2)
 
