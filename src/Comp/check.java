@@ -177,7 +177,7 @@ public class check extends javax.swing.JPanel {
         connect();
         String query1;
         
-        if( s == "Mechanism" )
+        if( s .equals("Mechanism")  )
         {
         query1 = "SELECT ID from mechanism where id=?";
         id2="ID_mechanism";
@@ -357,44 +357,73 @@ public class check extends javax.swing.JPanel {
         }
         
         }
-        
+                        String query4="update cheque\n" +
+                        "set state_of_doubt=false\n" +
+                        "where Doubt_number=?";
 
+                        try (PreparedStatement ps4 = con.prepareStatement(query4)) {
+        ps4.setInt(1,Integer.parseInt(numberOfCheque.getText()));
+        
+            int rowsAffected4 = ps4.executeUpdate();
+            if (rowsAffected4 > 0) {
+                System.out.println("Rows affected: " + rowsAffected4);
+            } else {
+                System.out.println("No rows affected");
+            }
+            
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                        
     }//GEN-LAST:event_addActionPerformed
 
     private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
         connect();
-        String query="select Name , Doubt_Number , Amount , Received_Date , Data_Spending_The_Money , state_of_doubt\n" +
-"from cheque\n" +
-"where kind='Workshops'";
-        try (PreparedStatement ps = con.prepareStatement(query)) {
-        ResultSet rs = ps.executeQuery();
         DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
         tb.setRowCount(0);
+        String query="select Name , Doubt_Number , Amount , Received_Date , Data_Spending_The_Money , state_of_doubt\n" +
+"from cheque\n" +
+"where kind='Workshops' or kind ='Admin'";
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+        ResultSet rs = ps.executeQuery();
+        
         while (rs.next()) {
             String name  = rs.getString("Name");
             String numberOfcheque=String.valueOf(rs.getInt("Doubt_Number"));
             String amount = String.valueOf(rs.getInt("Amount"));
             String date1   = rs.getString("Received_Date");
             String date2   = rs.getString("Data_Spending_The_Money");
-            String state = String.valueOf(rs.getBoolean("state_of_doubt"));
-            
-            String emp[] = {state , date2 , date1 , amount ,numberOfcheque ,name};
+            boolean state1 = rs.getBoolean("state_of_doubt");
+            String state2="غير متاح ";
+            if(state1==true)
+            {
+                state2="متاح";
+            }
+            String emp[] = {state2 , date2 , date1 , amount ,numberOfcheque ,name};
             tb.addRow(emp);
         }
     } catch (SQLException ex) {
         Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
     } 
+        
+        
     }//GEN-LAST:event_jTable1AncestorAdded
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
            DefaultTableModel model =(DefaultTableModel)jTable1.getModel();
-         
            int selectedRow = jTable1.getSelectedRow();
+           String state =model.getValueAt(selectedRow, 0).toString();
+           if(state.equals("متاح")){
            date_spending.setText(model.getValueAt(selectedRow, 1).toString());
            date1.setText(model.getValueAt(selectedRow, 2).toString());
            amount.setText(model.getValueAt(selectedRow, 3).toString());
            numberOfCheque.setText(model.getValueAt(selectedRow, 4).toString());
-          
+           }
+           else
+           {
+            JOptionPane.showMessageDialog(this, "This doubt cannot be used", "Error", JOptionPane.ERROR_MESSAGE);   
+           }
     }//GEN-LAST:event_jTable1MouseClicked
 
 

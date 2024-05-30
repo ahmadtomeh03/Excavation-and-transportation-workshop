@@ -17,7 +17,9 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 public class machine extends javax.swing.JPanel {
     
     
@@ -330,6 +332,12 @@ public class machine extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
         jLabel1.setText("الاليات");
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         jLabel3.setText("البحث");
 
@@ -490,8 +498,8 @@ public class machine extends javax.swing.JPanel {
                
                      connect();
        String query="select\n" +
-                    "(select sum(salary) from cash where ID_Mechanism=?)As sum_cash ,\n" +
-                    "(select sum(amount) from cheque where ID_Mechanism=?)As sum_cheque,\n" +
+                    "(select sum(salary) from cash where ID_Mechanism=? and kind='Mechanism')As sum_cash ,\n" +
+                    "(select sum(amount) from cheque where ID_Mechanism=? and kind='Mechanism')As sum_cheque,\n" +
                     "(select price from mechanism where ID=?) As price";
                    int sa1=0 , sa2=0 , price=0;
         try (PreparedStatement ps = con.prepareStatement(query))
@@ -519,7 +527,8 @@ public class machine extends javax.swing.JPanel {
             Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
            
-          if (sa1 + sa2 == price) {
+          if (sa1 + sa2 == price) 
+          {
               String query3=    "update mechanism\n" +
                                 "set sold=1\n" +
                                 "where ID=?";
@@ -552,7 +561,7 @@ public class machine extends javax.swing.JPanel {
           else {
             JOptionPane.showMessageDialog(
                 null,
-                "This vehicle cannot be sold due to non-payment of its full price",
+                "This machine cannot be sold because its full price has not been paid",
                 "Warning",
                 JOptionPane.WARNING_MESSAGE
             );
@@ -746,7 +755,7 @@ public class machine extends javax.swing.JPanel {
             Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
             if(price - sa1 - sa2 == 0){
-            String mech[] = { sold , String.valueOf(price - sa1 - sa2), String.valueOf(sa2), String.valueOf(sa1) ,Hour_Price, String.valueOf(price), name,ID };
+            String mech[] = {  String.valueOf(price - sa1 - sa2), String.valueOf(sa2), String.valueOf(sa1) ,Hour_Price, String.valueOf(price), name,ID };
             tb.addRow(mech);
             }
         }
@@ -794,7 +803,7 @@ public class machine extends javax.swing.JPanel {
             Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
             if(price - sa1 - sa2 != 0){
-            String mech[] = { sold , String.valueOf(price - sa1 - sa2), String.valueOf(sa2), String.valueOf(sa1) ,Hour_Price, String.valueOf(price), name,ID };
+            String mech[] = {  String.valueOf(price - sa1 - sa2), String.valueOf(sa2), String.valueOf(sa1) ,Hour_Price, String.valueOf(price), name,ID };
             tb.addRow(mech);
             }
         }
@@ -803,6 +812,14 @@ public class machine extends javax.swing.JPanel {
     }
         
     }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel searchworkshops =(DefaultTableModel)jTable1.getModel();
+    TableRowSorter<DefaultTableModel> searchworkshop1=new TableRowSorter<>(searchworkshops);
+    jTable1.setRowSorter(searchworkshop1);
+    searchworkshop1.setRowFilter(RowFilter.regexFilter(jTextField1.getText()));
+    }//GEN-LAST:event_jTextField1KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

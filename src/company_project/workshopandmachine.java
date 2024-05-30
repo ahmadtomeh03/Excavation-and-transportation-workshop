@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -355,10 +356,46 @@ public class workshopandmachine extends javax.swing.JFrame {
 
     private void salaryAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_salaryAncestorAdded
     connect();
-    String query1="select Sumation\n" +
-"from workshops_mechanism\n" +
-"where ID_Mechanism=? and ID_workshops=?";
-    String query2="";
+    int Sumation=0;
+        String query1=  "select Sumation\n" +
+                        "from workshops_mechanism\n" +
+                        "where ID_workshops=? and ID_Mechanism=?";
+        try (PreparedStatement ps1 = con.prepareStatement(query1)) {
+            ps1.setInt(1, IDwork);
+            ps1.setString(2, IDMech);
+            ResultSet rs1 = ps1.executeQuery();
+           
+            if (rs1.next()) {
+            Sumation=rs1.getInt("Sumation");
+            salary.setText(String.valueOf(Sumation));
+            
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+    String query2="select\n" +
+"(select sum(salary) from cash where ID_Mechanism=?and ID_Workshops=?)As sum_cash,\n" +
+"(select sum(Amount) from cheque where ID_mechanism=? and ID_Workshops=?)As sum_cheque";
+int sum1=0,sum2=0;
+    try (PreparedStatement ps2 = con.prepareStatement(query2)) {
+        ps2.setString(1, IDMech);    
+        ps2.setInt(2, IDwork);
+        ps2.setString(3, IDMech);    
+        ps2.setInt(4, IDwork);
+            
+            ResultSet rs2 = ps2.executeQuery();
+           
+            if (rs2.next()) {
+            sum1=rs2.getInt("sum_cash");
+            sum2=rs2.getInt("sum_cheque");
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    totalpaid.setText(String.valueOf(sum1+sum2));
+    salaryfinal.setText(String.valueOf(Sumation-sum1-sum2));
+        
     }//GEN-LAST:event_salaryAncestorAdded
 
     private void totalpaidAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_totalpaidAncestorAdded

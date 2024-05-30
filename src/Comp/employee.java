@@ -22,7 +22,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -95,12 +97,20 @@ public  Connection connect() {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         jLabel1.setText("الموظفين");
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
             }
         });
 
@@ -204,6 +214,11 @@ public  Connection connect() {
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jTable1MousePressed(evt);
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable1KeyReleased(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -483,6 +498,21 @@ if (!IDD.isEmpty() && IDD.matches("\\d+")) {
        addEmployee newEmp =new addEmployee();
        newEmp.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+    DefaultTableModel searchworkshops =(DefaultTableModel)jTable1.getModel();
+    TableRowSorter<DefaultTableModel> searchworkshop1=new TableRowSorter<>(searchworkshops);
+    jTable1.setRowSorter(searchworkshop1);
+    searchworkshop1.setRowFilter(RowFilter.regexFilter(jTextField1.getText()));        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1KeyReleased
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1KeyTyped
 private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {
         // Your implementation here
         // For example:
@@ -490,9 +520,11 @@ private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {
     }
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {
-        // Your implementation here
-        // For example:
-        System.out.println("Key released");
+        DefaultTableModel searchworkshops =(DefaultTableModel)jTable1.getModel();
+    TableRowSorter<DefaultTableModel> searchworkshop1=new TableRowSorter<>(searchworkshops);
+    jTable1.setRowSorter(searchworkshop1);
+    searchworkshop1.setRowFilter(RowFilter.regexFilter(jTextField1.getText()));        // TODO add your handling code here:
+    
     }
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {

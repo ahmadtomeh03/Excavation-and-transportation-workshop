@@ -432,7 +432,7 @@ public  Connection connect() {
     }//GEN-LAST:event_jTable1AncestorAdded
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-        DefaultTableModel searchStation =(DefaultTableModel)jTable1.getModel();
+    DefaultTableModel searchStation =(DefaultTableModel)jTable1.getModel();
     TableRowSorter<DefaultTableModel> searchStation1=new TableRowSorter<>(searchStation);
     jTable1.setRowSorter(searchStation1);
     searchStation1.setRowFilter(RowFilter.regexFilter(jTextField1.getText()));

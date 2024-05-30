@@ -17,7 +17,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -82,6 +84,12 @@ public  Connection connect() {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
         jLabel1.setText("الورشات");
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel3.setText("البحث");
@@ -416,6 +424,13 @@ if (!ID.isEmpty() && ID.matches("\\d+")) {
         Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_jTable1AncestorAdded
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+    DefaultTableModel searchworkshops =(DefaultTableModel)jTable1.getModel();
+    TableRowSorter<DefaultTableModel> searchworkshop1=new TableRowSorter<>(searchworkshops);
+    jTable1.setRowSorter(searchworkshop1);
+    searchworkshop1.setRowFilter(RowFilter.regexFilter(jTextField1.getText()));        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

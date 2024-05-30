@@ -31,18 +31,17 @@ public class anotherExpenses extends javax.swing.JPanel {
     public anotherExpenses() {
         initComponents();
     }
-
-    public Connection connect() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/company", "root", "root");
-            JOptionPane.showMessageDialog(null, "connected ");
-            return con;
-        } catch (Exception e) {
-
-        }
-        return null;
+public  Connection connect() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/company?useUnicode=yes&characterEncoding=UTF-8", "root", "root");
+        JOptionPane.showMessageDialog(null, "connected ");
+        return con;
+    } catch (Exception e) {
+        
     }
+    return null;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
